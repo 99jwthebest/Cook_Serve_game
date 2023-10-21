@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 422a4d4439d266349bbc73ecf1d49c54, type: 3}
-  m_Name: French Toast
+  m_Name: MuffinSingle
   m_EditorClassIdentifier: 
-  id: 4
-  foodItemName: French Toast
-  foodToBeMade: 4
-  foodIcon: {fileID: 21300000, guid: fe025e83f69d0b54f8a4fe3c7c128fd7, type: 3}
-  foodItemType: 0
+  id: 7
+  foodItemName: Muffins
+  foodToBeMade: 0
+  foodIcon: {fileID: 21300000, guid: 0e123cfdc54a3ca4684816a34167a566, type: 3}
+  foodItemType: 1
   steps: []

@@ -71,6 +71,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
 
     public Transform changingTabsIngredients;
     public Transform changingImageForTabIngredients;
+    public Transform foodOrderDetailsSlotTrans;
 
 
     private void Awake()

@@ -253,6 +253,50 @@ public class FoodSelectMenu : MonoBehaviour
         FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
     }
 
+    public void RandomIngredientsForOrder()
+    {
+
+
+        for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
+        {
+            int randomIngredientNum = Random.Range(1, foodItem.GetAmountOfFoodIngredients(stepIndex));
+            int randomAmountOfIngredientNeededPerTab = Random.Range(1, 3);
+
+            int ingredIndex = 0;
+
+
+            for(int i = 0; i < randomAmountOfIngredientNeededPerTab; i++)
+            {
+
+            }
+
+            foreach (Transform child in FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans)
+            {
+                FoodOrderDetailsSlot foodOrderDetailsSlot = child.GetComponent<FoodOrderDetailsSlot>();
+                foodOrderDetailsSlot.foodItem = foodItem;
+
+                FoodStep[] foodSteps = foodOrderDetailsSlot.foodItem.GetFoodSteps();
+
+                if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodOrderDetailsSlot.foodItem.GetAmountOfFoodIngredients(stepIndex))
+                {
+                    FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
+                    //foodOrderDetailsSlot.foodItemButtonID = ingredients[randomNum].ingredientID;
+                    foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomIngredientNum].ingredientName;
+                    foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;
+
+                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+
+                    ingredIndex++;
+                }
+                else
+                {
+                    Debug.Log("Foodsteps is null or foodSteps do not have a length.");
+                }
+            }
+        }
+
+    }
+
     public void prepButtonFunctionality()
     {
 

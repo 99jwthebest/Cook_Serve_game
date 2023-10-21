@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     FoodSelectMenu foodSelectMenu;
     [SerializeField]
     FoodItemTakeoutWindow foodTakeoutWindow;
+    [SerializeField]
+    FoodOrderDetailsSlot foodOrderDetailsSlot;
 
 
     public enum PlayerState
@@ -53,6 +56,8 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
+                CloseAndEmptyFoodOrderDetails();
+
                 ChangeIngredientTabs.instance.selectedTab = 0;
                 ChangeIngredientTabs.instance.SelectImageTab();
 
@@ -95,6 +100,8 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+                CloseAndEmptyFoodOrderDetails();
+
                 foodSelectMenu.addFoodToCookingClick();
                 foodSelectMenu.addToCookingStationSlotClick();
 
@@ -119,6 +126,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+                CloseAndEmptyFoodOrderDetails();
                 foodTakeoutWindow.giveCustomerSingleOrder();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -134,6 +142,22 @@ public class Player : MonoBehaviour
                 pState = PlayerState.None;
             }
         }
+    }
+
+    public void CloseAndEmptyFoodOrderDetails()
+    {
+        foreach(Transform child in FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans)
+        {
+            FoodOrderDetailsSlot foodOrderDetailsSlot = child.GetComponent<FoodOrderDetailsSlot>();
+
+            foodOrderDetailsSlot.foodItem = null;
+            foodOrderDetailsSlot.foodIngredientName.text = null;
+            foodOrderDetailsSlot.foodImageIngredientColor.sprite = null;
+
+            foodOrderDetailsSlot.gameObject.SetActive(false);
+        }
+
+        FoodMenuInventoryManager.Instance.foodOrderDetailsT.gameObject.SetActive(false);
     }
 
 
@@ -165,5 +189,10 @@ public class Player : MonoBehaviour
     public void SetFoodItemTakeoutWindow(FoodItemTakeoutWindow foodItemTakeoutWindowF)
     {
         foodTakeoutWindow = foodItemTakeoutWindowF;
+    }
+
+    public void SetFoodOrderDetailsSlot(FoodOrderDetailsSlot foodOrderDetailsSlotF)
+    {
+        foodOrderDetailsSlot = foodOrderDetailsSlotF;
     }
 }

@@ -11,6 +11,8 @@ public class FoodOrderDetailsSlot : MonoBehaviour
     public Image foodImageIngredientColor;
     public TextMeshProUGUI foodIngredientName;
 
+    public int foodIngredientID;
+
     // Start is called before the first frame update
     void Start()
     {

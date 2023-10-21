@@ -7489,6 +7489,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 2111440043}
   foodIngredientName: {fileID: 697842459}
+  foodIngredientID: 0
 --- !u!1 &193106535
 GameObject:
   m_ObjectHideFlags: 0
@@ -9556,6 +9557,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 300075235}
   foodIngredientName: {fileID: 300695296}
+  foodIngredientID: 0
 --- !u!1 &244426532
 GameObject:
   m_ObjectHideFlags: 0
@@ -13895,6 +13897,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1958005337}
   foodIngredientName: {fileID: 1712151397}
+  foodIngredientID: 0
 --- !u!1 &357461421
 GameObject:
   m_ObjectHideFlags: 0
@@ -17410,6 +17413,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1352633115}
   foodIngredientName: {fileID: 1216827306}
+  foodIngredientID: 0
 --- !u!1 &460188892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1731462342137166556, guid: 1c8a9480d6602004dba3dd6ba8316247,
@@ -18414,6 +18418,7 @@ MonoBehaviour:
   foodItemPrepping: {fileID: 0}
   foodSelectMenu: {fileID: 0}
   foodTakeoutWindow: {fileID: 0}
+  foodOrderDetailsSlot: {fileID: 0}
   pState: 0
 --- !u!1 &488949910
 GameObject:
@@ -25265,6 +25270,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1039563700}
   foodIngredientName: {fileID: 1434171320}
+  foodIngredientID: 0
 --- !u!1 &676399276
 GameObject:
   m_ObjectHideFlags: 0
@@ -28534,6 +28540,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 711454846}
   foodIngredientName: {fileID: 1849947149}
+  foodIngredientID: 0
 --- !u!1 &764722845
 GameObject:
   m_ObjectHideFlags: 0
@@ -34634,6 +34641,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 956286865}
   foodIngredientName: {fileID: 1003001705}
+  foodIngredientID: 0
 --- !u!1 &937403802
 GameObject:
   m_ObjectHideFlags: 0
@@ -39541,6 +39549,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1693386022}
   foodIngredientName: {fileID: 254333592}
+  foodIngredientID: 0
 --- !u!1 &1071321272
 GameObject:
   m_ObjectHideFlags: 0
@@ -46069,6 +46078,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1446844739}
   foodIngredientName: {fileID: 1608624417}
+  foodIngredientID: 0
 --- !u!1 &1239828933
 GameObject:
   m_ObjectHideFlags: 0
@@ -52066,6 +52076,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 73352333}
   foodIngredientName: {fileID: 809518588}
+  foodIngredientID: 0
 --- !u!1 &1385899612
 GameObject:
   m_ObjectHideFlags: 0
@@ -60123,6 +60134,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 781389803}
   foodIngredientName: {fileID: 1129186618}
+  foodIngredientID: 0
 --- !u!1 &1646148124
 GameObject:
   m_ObjectHideFlags: 0
@@ -61984,6 +61996,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 699373113}
   foodIngredientName: {fileID: 1169481801}
+  foodIngredientID: 0
 --- !u!1 &1693386020
 GameObject:
   m_ObjectHideFlags: 0
@@ -64850,6 +64863,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 589955964}
   foodIngredientName: {fileID: 1306009105}
+  foodIngredientID: 0
 --- !u!1 &1802380259
 GameObject:
   m_ObjectHideFlags: 0
@@ -65123,6 +65137,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1804351960}
         m_TargetAssemblyTypeName: FoodSelectMenu, Assembly-CSharp
+        m_MethodName: RandomFirstIngredient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1804351960}
+        m_TargetAssemblyTypeName: FoodSelectMenu, Assembly-CSharp
         m_MethodName: RandomIngredientsForOrder
         m_Mode: 1
         m_Arguments:
@@ -65223,6 +65249,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 264131749}
   foodIngredientName: {fileID: 102327385}
+  foodIngredientID: 0
 --- !u!1 &1807491613
 GameObject:
   m_ObjectHideFlags: 0
@@ -65470,6 +65497,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1397662252}
   foodIngredientName: {fileID: 468809717}
+  foodIngredientID: 0
 --- !u!1 &1819234109
 GameObject:
   m_ObjectHideFlags: 0
@@ -78368,6 +78396,7 @@ MonoBehaviour:
   foodItem: {fileID: 0}
   foodImageIngredientColor: {fileID: 1751274722}
   foodIngredientName: {fileID: 105698213}
+  foodIngredientID: 0
 --- !u!1 &2136879051
 GameObject:
   m_ObjectHideFlags: 0

@@ -259,6 +259,67 @@ public class FoodSelectMenu : MonoBehaviour
         FoodMenuInventoryManager.Instance.foodOrderDetailsT.gameObject.SetActive(true);
     }
 
+    public void RandomFirstIngredient()
+    {
+        int firstIngredientCount = foodItem.firstIngredientCount;
+
+        if(firstIngredientCount > 1)
+        {
+            int randomFirstIngredient = Random.Range(0, firstIngredientCount);
+
+            Transform foodOrderDetailsSlotChild = FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans.GetChild(0);
+            foodOrderDetailsSlotChild.gameObject.SetActive(true);
+            FoodOrderDetailsSlot foodOrderDetailsSlot = foodOrderDetailsSlotChild.GetComponent<FoodOrderDetailsSlot>();
+
+            if (foodOrderDetailsSlot.foodItem == null)
+            {
+                foodOrderDetailsSlot.foodItem = foodItem;
+                FoodStep[] foodSteps = foodOrderDetailsSlot.foodItem.GetFoodSteps();
+
+                if (foodSteps != null && foodSteps.Length > 0)
+                {
+                    FoodIngredients[] ingredients = foodSteps[0].Ingredients;
+                    foodOrderDetailsSlot.foodIngredientID = ingredients[randomFirstIngredient].ingredientID;
+                    foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
+                    foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomFirstIngredient].foodIngredientIcon;
+
+                    Debug.Log("Food has MORE than one first Ingredient");
+                }
+                else
+                {
+                    Debug.Log("Foodsteps is null or foodSteps do not have a length.");
+                }
+            }
+        }
+        else
+        {
+            Transform foodOrderDetailsSlotChild = FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans.GetChild(0);
+            foodOrderDetailsSlotChild.gameObject.SetActive(true);
+            FoodOrderDetailsSlot foodOrderDetailsSlot = foodOrderDetailsSlotChild.GetComponent<FoodOrderDetailsSlot>();
+
+            if (foodOrderDetailsSlot.foodItem == null)
+            {
+                foodOrderDetailsSlot.foodItem = foodItem;
+                FoodStep[] foodSteps = foodOrderDetailsSlot.foodItem.GetFoodSteps();
+
+                if (foodSteps != null && foodSteps.Length > 0)
+                {
+                    FoodIngredients[] ingredients = foodSteps[0].Ingredients;
+                    foodOrderDetailsSlot.foodIngredientID = ingredients[0].ingredientID;
+                    foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
+                    foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[0].foodIngredientIcon;
+
+                    Debug.Log("Food Has ONE First Ingredient");
+                }
+                else
+                {
+                    Debug.Log("Foodsteps is null or foodSteps do not have a length.");
+                }
+            }
+        }
+
+    }
+
 
     public void RandomIngredientsForOrder()
     {
@@ -266,7 +327,7 @@ public class FoodSelectMenu : MonoBehaviour
        // int foodOrderDetailsSlotTransCount = FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans.childCount;
         turnOnFoodOrderDetails();
 
-        int currentTransform = 0;
+        int currentTransform = 1;
 
         for(int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
         {
@@ -279,7 +340,7 @@ public class FoodSelectMenu : MonoBehaviour
                 foodOrderDetailsSlotChild.gameObject.SetActive(true);
                 FoodOrderDetailsSlot foodOrderDetailsSlot = foodOrderDetailsSlotChild.GetComponent<FoodOrderDetailsSlot>();
 
-                int randomIngredientNum = Random.Range(1, foodItem.GetAmountOfFoodIngredients(stepIndex));
+                int randomIngredientNum = Random.Range(foodItem.firstIngredientCount, foodItem.GetAmountOfFoodIngredients(stepIndex));
 
                 //int ingredIndex = 0;
 
@@ -293,7 +354,7 @@ public class FoodSelectMenu : MonoBehaviour
                     if (foodSteps != null && foodSteps.Length > 0)
                     {
                         FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
-                        //foodOrderDetailsSlot.foodItemButtonID = ingredients[randomNum].ingredientID;
+                        foodOrderDetailsSlot.foodIngredientID = ingredients[randomIngredientNum].ingredientID;
                         foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomIngredientNum].ingredientName;
                         foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;
 

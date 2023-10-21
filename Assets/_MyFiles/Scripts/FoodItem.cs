@@ -26,6 +26,7 @@ public class FoodItem : ScriptableObject
     [SerializeField]
     int prepStepCount;
     public int foodIngredientsAmountPerTab;
+    public int firstIngredientCount;
 
     [SerializeField]
     FoodStep[] steps;

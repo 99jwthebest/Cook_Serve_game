@@ -6,6 +6,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player instance;
+    [SerializeField]
+    int stepInCurrentOrder;
+    [SerializeField]
+    FoodItem foodItemPrepping;
+    [SerializeField]
+    FoodSelectMenu foodSelectMenu;
+    [SerializeField]
+    FoodItemTakeoutWindow foodTakeoutWindow;
+
 
     public enum PlayerState
     {
@@ -24,11 +33,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
         {
             GetOutOfMakingBatchOrder();
+            FinishMakingBatchOrder();
+            FinishMakingSingleOrder();
             FoodMenuInventoryManager.Instance.menuFoodInventory.gameObject.SetActive(false);
-            if(pState != PlayerState.MakingSingleOrder)
+            if (pState != PlayerState.MakingSingleOrder)
             {
                 FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(false);
 
@@ -39,13 +50,17 @@ public class Player : MonoBehaviour
 
     public void GetOutOfMakingBatchOrder()
     {
-        if(pState == PlayerState.MakingBatchOrder)
+        if (foodItemPrepping != null)
         {
-            ResetFoodImagesAndFoodPrepButtons();
-            FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
-            FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
-            Debug.Log("State Changed Worked!");
-            pState = PlayerState.None;
+            if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
+            {
+                stepInCurrentOrder = 0;
+                ResetFoodImagesAndFoodPrepButtons();
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+                Debug.Log("State Changed Worked!");
+                pState = PlayerState.None;
+            }
         }
     }
 
@@ -69,4 +84,71 @@ public class Player : MonoBehaviour
 
     }
 
+    public void FinishMakingBatchOrder()
+    {
+        if (foodItemPrepping != null)
+        {
+            if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
+            {
+                foodSelectMenu.addFoodToCookingClick();
+                foodSelectMenu.addToCookingStationSlotClick();
+
+                stepInCurrentOrder = 0;
+                ResetFoodImagesAndFoodPrepButtons();
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+                Debug.Log("State Changed Worked!");
+                pState = PlayerState.None;
+            }
+        }
+    }
+
+    public void FinishMakingSingleOrder()
+    {
+        if (foodItemPrepping != null)
+        {
+            if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
+            {
+                foodTakeoutWindow.giveCustomerSingleOrder();
+
+                stepInCurrentOrder = 0;
+                ResetFoodImagesAndFoodPrepButtons();
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+                Debug.Log("State Changed Worked!");
+                pState = PlayerState.None;
+            }
+        }
+    }
+
+
+    public int GetCurrentStepInOrder()
+    {
+        return stepInCurrentOrder;
+    }
+
+    public int incrementCurrentStepInOrder()
+    {
+        return stepInCurrentOrder++;
+    }
+
+    public int decrementCurrentStepInOrder()
+    {
+        return stepInCurrentOrder--;
+    }
+
+    public void SetFoodItemPrepping(FoodItem foodItemPreppingF)
+    {
+        foodItemPrepping = foodItemPreppingF;
+    }
+
+    public void SetFoodSelectMenu(FoodSelectMenu foodSelectMenuF)
+    {
+        foodSelectMenu = foodSelectMenuF;
+    }
+
+    public void SetFoodItemTakeoutWindow(FoodItemTakeoutWindow foodItemTakeoutWindowF)
+    {
+        foodTakeoutWindow = foodItemTakeoutWindowF;
+    }
 }

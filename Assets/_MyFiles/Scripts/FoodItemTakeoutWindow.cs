@@ -36,7 +36,7 @@ public class FoodItemTakeoutWindow : MonoBehaviour
             foodWaitingTime = 7f;
         }
 
-        if(foodWaitingTime <= 0)
+        if (foodWaitingTime <= 0)
         {
             foodWaitingTime = 7f;
             customerLeaves();
@@ -72,7 +72,7 @@ public class FoodItemTakeoutWindow : MonoBehaviour
 
     public void checkIfFoodIsReady()
     {
-        if(foodItem.foodItemType == FoodItem.FoodItemType.Batch)
+        if (foodItem.foodItemType == FoodItem.FoodItemType.Batch)
         {
             foreach (Transform cookingStationSTrans in FoodMenuInventoryManager.Instance.foodLoadoutContent)
             {
@@ -82,7 +82,7 @@ public class FoodItemTakeoutWindow : MonoBehaviour
                 {
                     if (cookingStationSlot.howMuchFoodIsLeft > 0)
                     {
-                    
+
                         cookingStationSlot.howMuchFoodIsLeft--;
                         cookingStationSlot.howMuchFoodIsLeftText.text = cookingStationSlot.howMuchFoodIsLeft.ToString();
 
@@ -127,9 +127,10 @@ public class FoodItemTakeoutWindow : MonoBehaviour
             }
             Debug.Log("Could not find a station with food!!!");
         }
-        else if(foodItem.foodItemType == FoodItem.FoodItemType.Single)
+        else if (foodItem.foodItemType == FoodItem.FoodItemType.Single)
         {
             turnOnFoodPrepButtons();
+            addFoodInfoToPrepButtons();
             turnOnFoodPrepImages();
             changePlayerState();
         }
@@ -139,34 +140,64 @@ public class FoodItemTakeoutWindow : MonoBehaviour
         }
     }
 
-
-    public void addFoodInfoToPrepButtons()
-    {
-        foreach (Transform child in FoodMenuInventoryManager.Instance.foodPrepMenuContent)
-        {
-            FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
-
-            foodSelectMenu.foodItem = foodItem;
-            //foodSelectMenu.foodItemButtonID = foodItemButtonID;
-
-        }
-    }
-
     public void turnOnFoodPrepButtons()
     {
         foodWaitingTime = 30f;
         FoodMenuInventoryManager.Instance.takeOutWindowIDReceive = takeOutWindowID;
         FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(true);
         FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(false);
-        FoodMenuInventoryManager.Instance.foodPrepMenuContentSingle.gameObject.SetActive(true);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(true);
+    }
+
+    public void addFoodInfoToPrepButtons()
+    {
+        int ingredIndex = 0;
+
+        foreach (Transform child in FoodMenuInventoryManager.Instance.foodPrepMenuContent)
+        {
+            FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+
+            foodSelectMenu.foodItem = foodItem;
+
+            //for(int i = 0; i)
+            FoodStep[] foodSteps = foodSelectMenu.foodItem.GetFoodSteps();
+
+            if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients())
+            {
+
+                FoodIngredients[] ingredients = foodSteps[0].Ingredients;
+                foodSelectMenu.foodItemButtonID = ingredients[ingredIndex].ingredientID;
+                foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].ingredientName;
+                foodSelectMenu.foodItemIconSM.sprite = ingredients[ingredIndex].foodIngredientIcon;
+
+                if (foodSelectMenu.foodItemButtonID == 0)
+                {
+                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                }
+                else
+                {
+                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                }
+
+                ingredIndex++;
+            }
+            else
+            {
+                Debug.Log("Foodsteps is null or foodSteps does not have a length");
+            }
+        }
+
+        Player.instance.SetFoodItemPrepping(foodItem);
+        Player.instance.SetFoodItemTakeoutWindow(this);
     }
 
     public void turnOnFoodPrepImages()
     {
         FoodMenuInventoryManager.Instance.foodPrepImages.gameObject.SetActive(true);
         FoodMenuInventoryManager.Instance.foodPrepImages.GetChild(0).gameObject.SetActive(true); // change index of 0 to foodItem.Id
-
+        FoodMenuInventoryManager.Instance.foodPrepImages.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
     }
+
 
     public void giveCustomerSingleOrder()
     {
@@ -191,6 +222,7 @@ public class FoodItemTakeoutWindow : MonoBehaviour
     public void changePlayerState()
     {
         Player.instance.pState = Player.PlayerState.MakingSingleOrder;
+        Player.instance.SetFoodItemPrepping(foodItem);
     }
 
     public void changePlayerStateToNone()
@@ -198,3 +230,4 @@ public class FoodItemTakeoutWindow : MonoBehaviour
         Player.instance.pState = Player.PlayerState.None;
     }
 }
+

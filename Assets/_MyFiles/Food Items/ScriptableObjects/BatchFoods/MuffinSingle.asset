@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 7
   foodItemName: Muffins
-  foodToBeMade: 0
+  foodToBeMade: 1
   foodIcon: {fileID: 21300000, guid: 0e123cfdc54a3ca4684816a34167a566, type: 3}
   foodItemType: 1
   steps: []

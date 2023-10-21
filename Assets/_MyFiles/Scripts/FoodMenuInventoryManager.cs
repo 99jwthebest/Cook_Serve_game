@@ -38,7 +38,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public Transform foodSelectMenu;
     public Transform foodSelectMenuContent;
     public Transform foodPrepMenuContent;
-    public Transform foodPrepMenuContentSingle;
+    public Transform foodPrepMenuContent1;
+    public Transform foodPrepMenuContent2;
     public Transform foodPrepImages;
 
     public Transform takeoutOrderWindowContent;
@@ -67,6 +68,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public TextMeshProUGUI amountOfStrikesText;
     public int perfectFoodOrderCombo;
     public TextMeshProUGUI perfectFoodOrderComboText;
+
+    public Transform changingTabsForIngredients;
 
 
     private void Awake()
@@ -111,7 +114,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
                 int randomFoodNumber = Random.Range(0, foodBatchCount);
                 FoodSelectMenu foodSelectMenu = FoodInventoryContent.GetChild(randomFoodNumber).GetComponentInChildren<FoodSelectMenu>();
 
-                if(foodSelectMenu.foodNeedToCookAmount > 0 && foodSelectMenu.currentSpawnedFoodAmount < foodSelectMenu.foodNeedToCookAmount)
+                if (foodSelectMenu.foodNeedToCookAmount > 0 && foodSelectMenu.currentSpawnedFoodAmount < foodSelectMenu.foodNeedToCookAmount)
                 {
                     foodItemTakeoutWindow.foodItem = foodSelectMenu.foodItem;
                     foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenu.foodItem.foodItemName;
@@ -136,7 +139,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
                     switch (foodSelectMenu.foodItem.foodItemType)
                     {
                         case FoodItem.FoodItemType.Batch:
-                            if(foodSelectMenu.foodNeedToCookAmount > 0 && foodSelectMenu.currentSpawnedFoodAmount < foodSelectMenu.foodNeedToCookAmount)
+                            if (foodSelectMenu.foodNeedToCookAmount > 0 && foodSelectMenu.currentSpawnedFoodAmount < foodSelectMenu.foodNeedToCookAmount)
                             {
                                 foodItemTakeoutWindow.foodItem = foodSelectMenu.foodItem;
                                 foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenu.foodItem.foodItemName;
@@ -172,19 +175,19 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public void populateTakeoutWindows()
     {
 
-        if(takeoutWindowsFilled == 8)
+        if (takeoutWindowsFilled == 8)
         {
             Debug.Log("All windows are filled!!");
             return;
         }
 
-        if(totalAmountOfOrdersSpawned >= totalAmountOfCustomersPerRound)
+        if (totalAmountOfOrdersSpawned >= totalAmountOfCustomersPerRound)
         {
             Debug.Log("No more customers are coming through!!!!");
             return;
         }
 
-        
+
 
         if (amountOfSingleOrdersSpawned >= totalAmountOfSingleOrders)
         {
@@ -287,10 +290,10 @@ public class FoodMenuInventoryManager : MonoBehaviour
         windowTakeoutOrderNum++;
 
         takeoutOrderWindowSlot.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-        
+
         foodItemTakeoutWindow = takeoutOrderWindowSlot.GetComponentInChildren<FoodItemTakeoutWindow>();
 
-        if(foodItemTakeoutWindow.foodItem != null) 
+        if (foodItemTakeoutWindow.foodItem != null)
         {
             SetTakeOutWindow();
         }

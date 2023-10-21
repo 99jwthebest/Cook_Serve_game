@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-struct FoodStep
-{ 
+public struct FoodStep
+{
     [SerializeField]
-    FoodIngriedients[] ingriedients;
+    FoodIngredients[] ingredients;
+
+    public FoodIngredients[] Ingredients
+    {
+        get { return ingredients; }
+    }
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Food Item/Create New Item")]
@@ -18,12 +23,37 @@ public class FoodItem : ScriptableObject
     public int foodToBeMade;
     public Sprite foodIcon;
     public FoodItemType foodItemType;
+    [SerializeField]
+    int prepStepCount;
 
     [SerializeField]
     FoodStep[] steps;
+
     public enum FoodItemType
     {
         Batch,
         Single
     }
+
+    public FoodStep[] GetFoodSteps()
+    {
+        return steps;
+    }
+
+    public int GetAmountOfFoodSteps()
+    {
+        int amountOfSteps = steps.Length;
+        return amountOfSteps;
+    }
+
+    public int GetAmountOfFoodIngredients() // int iterateThroughSteps
+    {
+        return steps[0].Ingredients.Length;
+    }
+
+    public int GetPrepStepCount()
+    {
+        return prepStepCount;
+    }
+
 }

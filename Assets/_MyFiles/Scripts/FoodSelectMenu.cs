@@ -20,6 +20,9 @@ public class FoodSelectMenu : MonoBehaviour
     public int foodCookingCount;
     public int currentSpawnedFoodAmount;
     public int foodItemButtonID;
+    public GameObject fadePrepButtonImage;
+
+
 
     //public bool equippedFoodItem;
     //public GameObject foodInventory;
@@ -247,6 +250,8 @@ public class FoodSelectMenu : MonoBehaviour
         FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(true);
         FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(true);
         FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(true);
+        
+        FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(false); 
     }
 
     public void turnOffFoodPrepButtons()
@@ -400,6 +405,8 @@ public class FoodSelectMenu : MonoBehaviour
         Player.instance.incrementCurrentStepInOrder();
 
         Player.instance.AddIngredientToList(foodIngredients);
+
+        fadePrepButtonImage.gameObject.SetActive(true);
 
         if (Player.instance.GetCurrentStepInOrder() > 0 && Player.instance.GetCurrentStepInOrder() < 2)
         {

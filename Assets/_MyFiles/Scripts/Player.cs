@@ -50,6 +50,13 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(false);
             }
         }
+
+        if(pState == PlayerState.None)
+        {
+        foodIngredients.RemoveAll(x => x != null);
+
+//            foodIngredientsToCheck.Clear();
+        }
     }
 
 
@@ -59,8 +66,8 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
-                foodIngredients.Clear();
-                foodIngredientsToCheck.Clear();
+                //foodIngredients.Clear();
+                //foodIngredientsToCheck.Clear();
                 CloseAndEmptyFoodOrderDetails();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -105,7 +112,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
-                CheckIfIngredientsAreCorrect();
+                //CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodSelectMenu.addFoodToCookingClick();
@@ -132,7 +139,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
-                CheckIfIngredientsAreCorrect();
+                //CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodTakeoutWindow.giveCustomerSingleOrder();
@@ -155,7 +162,7 @@ public class Player : MonoBehaviour
     public void CheckIfIngredientsAreCorrect()
     {
 
-
+        foodIngredients.RemoveAll(x => x != null);
         foodIngredients.Clear();
         foodIngredientsToCheck.Clear();
 

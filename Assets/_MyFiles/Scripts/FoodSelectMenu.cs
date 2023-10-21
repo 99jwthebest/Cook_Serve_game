@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class FoodSelectMenu : MonoBehaviour
 {
     public FoodItem foodItem;
+    public FoodIngredients foodIngredients;
     public TextMeshProUGUI foodItemNameSM;
     public Image foodItemIconSM;
     public TextMeshProUGUI amountOfFoodThatCanBeMade;
@@ -205,6 +206,7 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients(stepIndex))
                 {
                     FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
+                    foodSelectMenu.foodIngredients = ingredients[ingredIndex];
                     foodSelectMenu.foodItemButtonID = ingredients[ingredIndex].ingredientID;
                     foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].ingredientName;
                     foodSelectMenu.foodItemIconSM.sprite = ingredients[ingredIndex].foodIngredientIcon;
@@ -279,6 +281,7 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
+                    Player.instance.AddIngredientToList(ingredients[randomFirstIngredient]);
                     foodOrderDetailsSlot.foodIngredientID = ingredients[randomFirstIngredient].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomFirstIngredient].foodIngredientIcon;
@@ -305,6 +308,7 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
+                    Player.instance.AddIngredientToList(ingredients[0]);
                     foodOrderDetailsSlot.foodIngredientID = ingredients[0].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[0].foodIngredientIcon;
@@ -354,6 +358,7 @@ public class FoodSelectMenu : MonoBehaviour
                     if (foodSteps != null && foodSteps.Length > 0)
                     {
                         FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
+                        Player.instance.AddIngredientToList(ingredients[randomIngredientNum]);
                         foodOrderDetailsSlot.foodIngredientID = ingredients[randomIngredientNum].ingredientID;
                         foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomIngredientNum].ingredientName;
                         foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;
@@ -393,6 +398,8 @@ public class FoodSelectMenu : MonoBehaviour
     {
 
         Player.instance.incrementCurrentStepInOrder();
+
+        Player.instance.AddIngredientToList(foodIngredients);
 
         if (Player.instance.GetCurrentStepInOrder() > 0 && Player.instance.GetCurrentStepInOrder() < 2)
         {

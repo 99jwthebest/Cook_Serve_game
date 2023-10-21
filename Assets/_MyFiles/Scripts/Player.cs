@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     FoodItemTakeoutWindow foodTakeoutWindow;
     [SerializeField]
     FoodOrderDetailsSlot foodOrderDetailsSlot;
+    public List<FoodIngredients> foodIngredients = new List<FoodIngredients>();
+    public List<FoodIngredients> foodIngredientsToCheck = new List<FoodIngredients>();
+
 
 
     public enum PlayerState
@@ -127,6 +130,7 @@ public class Player : MonoBehaviour
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
                 CloseAndEmptyFoodOrderDetails();
+
                 foodTakeoutWindow.giveCustomerSingleOrder();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -144,6 +148,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void CheckIfIngredientsAreCorrect()
+    {
+
+
+        foodIngredients.Clear();
+
+    }
+
     public void CloseAndEmptyFoodOrderDetails()
     {
         foreach(Transform child in FoodMenuInventoryManager.Instance.foodOrderDetailsSlotTrans)
@@ -158,6 +170,21 @@ public class Player : MonoBehaviour
         }
 
         FoodMenuInventoryManager.Instance.foodOrderDetailsT.gameObject.SetActive(false);
+    }
+
+    public void AddIngredientToList(FoodIngredients foodIngredient)
+    {
+        foodIngredients.Add(foodIngredient);
+    }
+
+    public void Remove(FoodIngredients foodIngredient)
+    {
+        foodIngredients.Remove(foodIngredient);
+    }
+
+    public void AddIngredientToListCheck(FoodIngredients foodIngredient)
+    {
+        foodIngredients.Add(foodIngredient);
     }
 
 

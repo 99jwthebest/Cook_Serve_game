@@ -8,6 +8,8 @@ public class FoodOrderDetailsSlot : MonoBehaviour
 {
 
     public FoodItem foodItem;
+    public FoodIngredients foodIngredients;
+
     public Image foodImageIngredientColor;
     public TextMeshProUGUI foodIngredientName;
 

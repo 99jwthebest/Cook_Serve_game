@@ -153,39 +153,61 @@ public class FoodItemTakeoutWindow : MonoBehaviour
     {
         int ingredIndex = 0;
 
-        foreach (Transform child in FoodMenuInventoryManager.Instance.foodPrepMenuContent)
+        for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
         {
-            FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+            Transform foodPrepMenuContent = null;
 
-            foodSelectMenu.foodItem = foodItem;
-
-            //for(int i = 0; i)
-            FoodStep[] foodSteps = foodSelectMenu.foodItem.GetFoodSteps();
-
-            if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients())
+            if (stepIndex == 0)
             {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent;
+            }
+            else if (stepIndex == 1)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent1;
+            }
+            else if (stepIndex == 2)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent2;
+            }
 
-                FoodIngredients[] ingredients = foodSteps[0].Ingredients;
-                foodSelectMenu.foodItemButtonID = ingredients[ingredIndex].ingredientID;
-                foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].ingredientName;
-                foodSelectMenu.foodItemIconSM.sprite = ingredients[ingredIndex].foodIngredientIcon;
+            if (foodPrepMenuContent == null)
+            {
+                Debug.Log("foodPrepMenuContent for step " + stepIndex + " is not available.");
+                return;
+            }
 
-                if (foodSelectMenu.foodItemButtonID == 0)
+            foreach (Transform child in foodPrepMenuContent)
+            {
+                FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+                foodSelectMenu.foodItem = foodItem;
+
+                FoodStep[] foodSteps = foodSelectMenu.foodItem.GetFoodSteps();
+
+                if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients(stepIndex))
                 {
-                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                    FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
+                    foodSelectMenu.foodItemButtonID = ingredients[ingredIndex].ingredientID;
+                    foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].ingredientName;
+                    foodSelectMenu.foodItemIconSM.sprite = ingredients[ingredIndex].foodIngredientIcon;
+
+                    if (foodSelectMenu.foodItemButtonID == 0)
+                    {
+                        child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                    }
+
+                    ingredIndex++;
                 }
                 else
                 {
-                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                    Debug.Log("Foodsteps is null or foodSteps do not have a length.");
                 }
-
-                ingredIndex++;
-            }
-            else
-            {
-                Debug.Log("Foodsteps is null or foodSteps does not have a length");
             }
         }
+
 
         Player.instance.SetFoodItemPrepping(foodItem);
         Player.instance.SetFoodItemTakeoutWindow(this);

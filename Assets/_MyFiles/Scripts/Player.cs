@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
             if (pState != PlayerState.MakingSingleOrder)
             {
                 FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(false);
-
             }
         }
     }
@@ -54,9 +53,15 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
+                ChangeIngredientTabs.instance.selectedTab = 0;
+                ChangeIngredientTabs.instance.SelectImageTab();
+
                 stepInCurrentOrder = 0;
                 ResetFoodImagesAndFoodPrepButtons();
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
+
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
                 Debug.Log("State Changed Worked!");
                 pState = PlayerState.None;
@@ -93,9 +98,14 @@ public class Player : MonoBehaviour
                 foodSelectMenu.addFoodToCookingClick();
                 foodSelectMenu.addToCookingStationSlotClick();
 
+                ChangeIngredientTabs.instance.selectedTab = 0;
+                ChangeIngredientTabs.instance.SelectImageTab();
                 stepInCurrentOrder = 0;
                 ResetFoodImagesAndFoodPrepButtons();
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
+
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
                 Debug.Log("State Changed Worked!");
                 pState = PlayerState.None;
@@ -111,9 +121,14 @@ public class Player : MonoBehaviour
             {
                 foodTakeoutWindow.giveCustomerSingleOrder();
 
+                ChangeIngredientTabs.instance.selectedTab = 0;
+                ChangeIngredientTabs.instance.SelectImageTab();
                 stepInCurrentOrder = 0;
                 ResetFoodImagesAndFoodPrepButtons();
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
+                FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
+
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
                 Debug.Log("State Changed Worked!");
                 pState = PlayerState.None;

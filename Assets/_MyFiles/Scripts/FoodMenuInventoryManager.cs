@@ -69,7 +69,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public int perfectFoodOrderCombo;
     public TextMeshProUGUI perfectFoodOrderComboText;
 
-    public Transform changingTabsForIngredients;
+    public Transform changingTabsIngredients;
+    public Transform changingImageForTabIngredients;
 
 
     private void Awake()

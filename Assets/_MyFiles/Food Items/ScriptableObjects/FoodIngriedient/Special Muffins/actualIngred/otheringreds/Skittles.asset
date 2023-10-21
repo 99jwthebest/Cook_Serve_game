@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5017c95568aa69e49befd5d37ca21e2d, type: 3}
   m_Name: Skittles
   m_EditorClassIdentifier: 
-  ingredientID: 0
-  ingredientName: 
-  foodIngredientIcon: {fileID: 0}
+  ingredientID: 1
+  ingredientName: Skittles
+  foodIngredientIcon: {fileID: 21300000, guid: 73cc54e813d6f4f4e8f5140d211e6154, type: 3}

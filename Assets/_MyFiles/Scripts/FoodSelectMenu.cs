@@ -170,10 +170,10 @@ public class FoodSelectMenu : MonoBehaviour
 
     public void addFoodInfoToPrepButtons()
     {
-        int ingredIndex = 0;
 
         for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
         {
+            int ingredIndex = 0;
             Transform foodPrepMenuContent = null;
 
             if (stepIndex == 0)
@@ -202,11 +202,11 @@ public class FoodSelectMenu : MonoBehaviour
 
                 FoodStep[] foodSteps = foodSelectMenu.foodItem.GetFoodSteps();
 
-                if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients())
+                if (foodSteps != null && foodSteps.Length > 0 && ingredIndex < foodSelectMenu.foodItem.GetAmountOfFoodIngredients(stepIndex))
                 {
                     FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
                     foodSelectMenu.foodItemButtonID = ingredients[ingredIndex].ingredientID;
-                    foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].name;
+                    foodSelectMenu.foodItemNameSM.text = ingredients[ingredIndex].ingredientName;
                     foodSelectMenu.foodItemIconSM.sprite = ingredients[ingredIndex].foodIngredientIcon;
 
                     if (foodSelectMenu.foodItemButtonID == 0)
@@ -240,6 +240,19 @@ public class FoodSelectMenu : MonoBehaviour
         changePlayerState();
     }
 
+    public void turnOnFoodPrepButtons()
+    {
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(true);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(true);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(true);
+    }
+    public void turnOffFoodPrepButtons()
+    {
+        //FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
+    }
+
     public void prepButtonFunctionality()
     {
 
@@ -247,24 +260,72 @@ public class FoodSelectMenu : MonoBehaviour
 
         if (Player.instance.GetCurrentStepInOrder() > 0 && Player.instance.GetCurrentStepInOrder() < 2)
         {
-            foreach (Transform child in FoodMenuInventoryManager.Instance.foodPrepMenuContent)
+            for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
             {
-                FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
-                if (foodSelectMenu.foodItemButtonID == 0)
+                Transform foodPrepMenuContent = null;
+
+                if (stepIndex == 0)
                 {
-                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent;
                 }
-                else
+                else if (stepIndex == 1)
                 {
-                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent1;
+                }
+                else if (stepIndex == 2)
+                {
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent2;
+                }
+
+                if (foodPrepMenuContent == null)
+                {
+                    Debug.Log("foodPrepMenuContent for step " + stepIndex + " is not available.");
+                    return;
+                }
+
+                foreach (Transform child in foodPrepMenuContent)
+                {
+                    FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+                    if (foodSelectMenu.foodItemButtonID == 0)
+                    {
+                        child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                    }
                 }
             }
         }
         else if (Player.instance.GetCurrentStepInOrder() >= foodItem.GetPrepStepCount())
         {
-            foreach (Transform child in FoodMenuInventoryManager.Instance.foodPrepMenuContent)
+            for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
             {
-                child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                Transform foodPrepMenuContent = null;
+
+                if (stepIndex == 0)
+                {
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent;
+                }
+                else if (stepIndex == 1)
+                {
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent1;
+                }
+                else if (stepIndex == 2)
+                {
+                    foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent2;
+                }
+
+                if (foodPrepMenuContent == null)
+                {
+                    Debug.Log("foodPrepMenuContent for step " + stepIndex + " is not available.");
+                    return;
+                }
+
+                foreach (Transform child in foodPrepMenuContent)
+                {
+                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                }
             }
         }
     }

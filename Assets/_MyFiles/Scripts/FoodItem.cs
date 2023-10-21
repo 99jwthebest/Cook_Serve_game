@@ -46,9 +46,9 @@ public class FoodItem : ScriptableObject
         return amountOfSteps;
     }
 
-    public int GetAmountOfFoodIngredients() // int iterateThroughSteps
+    public int GetAmountOfFoodIngredients(int iterateThroughSteps) // int iterateThroughSteps
     {
-        return steps[0].Ingredients.Length;
+        return steps[iterateThroughSteps].Ingredients.Length;
     }
 
     public int GetPrepStepCount()

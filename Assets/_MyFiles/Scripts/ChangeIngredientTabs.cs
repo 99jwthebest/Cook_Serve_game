@@ -5,12 +5,13 @@ using UnityEngine.EventSystems;
 
 public class ChangeIngredientTabs : MonoBehaviour, IScrollHandler
 {
+    public static ChangeIngredientTabs instance;
     public int selectedTab = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class ChangeIngredientTabs : MonoBehaviour, IScrollHandler
 
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
-                if (selectedTab >= FoodMenuInventoryManager.Instance.changingTabsForIngredients.childCount - 1)
+                if (selectedTab >= FoodMenuInventoryManager.Instance.changingImageForTabIngredients.childCount - 1)
                 {
                     selectedTab = 0;
                 }
@@ -42,7 +43,7 @@ public class ChangeIngredientTabs : MonoBehaviour, IScrollHandler
             {
                 if (selectedTab <= 0)
                 {
-                    selectedTab = FoodMenuInventoryManager.Instance.changingTabsForIngredients.childCount - 1;
+                    selectedTab = FoodMenuInventoryManager.Instance.changingImageForTabIngredients.childCount - 1;
                 }
                 else
                 {
@@ -53,17 +54,34 @@ public class ChangeIngredientTabs : MonoBehaviour, IScrollHandler
 
             if (previousSelectedTab != selectedTab)
             {
+                SelectImageTab();
                 SelectTab();
-
             }
         }
     }
 
 
+    public void SelectImageTab()
+    {
+        int i = 0;
+        foreach (Transform tabImage in FoodMenuInventoryManager.Instance.changingImageForTabIngredients)
+        {
+            if (i == selectedTab)
+            {
+                tabImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                tabImage.gameObject.SetActive(false);
+            }
+            i++;
+        }
+    }
+
     public void SelectTab()
     {
         int i = 0;
-        foreach (Transform tab in FoodMenuInventoryManager.Instance.changingTabsForIngredients)
+        foreach (Transform tab in FoodMenuInventoryManager.Instance.changingTabsIngredients)
         {
             if (i == selectedTab)
             {

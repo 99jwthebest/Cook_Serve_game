@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
+                foodIngredients.Clear();
+                foodIngredientsToCheck.Clear();
                 CloseAndEmptyFoodOrderDetails();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -103,6 +105,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodSelectMenu.addFoodToCookingClick();
@@ -129,6 +132,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodTakeoutWindow.giveCustomerSingleOrder();
@@ -153,6 +157,7 @@ public class Player : MonoBehaviour
 
 
         foodIngredients.Clear();
+        foodIngredientsToCheck.Clear();
 
     }
 
@@ -184,7 +189,7 @@ public class Player : MonoBehaviour
 
     public void AddIngredientToListCheck(FoodIngredients foodIngredient)
     {
-        foodIngredients.Add(foodIngredient);
+        foodIngredientsToCheck.Add(foodIngredient);
     }
 
 

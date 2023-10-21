@@ -281,7 +281,7 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
-                    Player.instance.AddIngredientToList(ingredients[randomFirstIngredient]);
+                    Player.instance.AddIngredientToListCheck(ingredients[randomFirstIngredient]);
                     foodOrderDetailsSlot.foodIngredientID = ingredients[randomFirstIngredient].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomFirstIngredient].foodIngredientIcon;
@@ -308,7 +308,7 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
-                    Player.instance.AddIngredientToList(ingredients[0]);
+                    Player.instance.AddIngredientToListCheck(ingredients[0]);
                     foodOrderDetailsSlot.foodIngredientID = ingredients[0].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[0].foodIngredientIcon;
@@ -333,10 +333,10 @@ public class FoodSelectMenu : MonoBehaviour
 
         int currentTransform = 1;
 
-        for(int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
+        for(int stepIndex = 0; stepIndex < foodItem.GetPrepStepCount() - 1; stepIndex++)
         {
 
-            int randomAmountOfIngredientNeededPerTab = Random.Range(1, 3);
+            int randomAmountOfIngredientNeededPerTab = Random.Range(1, foodItem.randomAmountOfIngredientNeededPerTab + 1);
 
             for (int j = 0; j < randomAmountOfIngredientNeededPerTab; j++)
             {
@@ -358,7 +358,7 @@ public class FoodSelectMenu : MonoBehaviour
                     if (foodSteps != null && foodSteps.Length > 0)
                     {
                         FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
-                        Player.instance.AddIngredientToList(ingredients[randomIngredientNum]);
+                        Player.instance.AddIngredientToListCheck(ingredients[randomIngredientNum]);
                         foodOrderDetailsSlot.foodIngredientID = ingredients[randomIngredientNum].ingredientID;
                         foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomIngredientNum].ingredientName;
                         foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;

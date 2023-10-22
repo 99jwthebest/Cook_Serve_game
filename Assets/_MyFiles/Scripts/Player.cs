@@ -129,6 +129,8 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
                 
                 CheckIfIngredientsAreCorrect();
+                pState = PlayerState.None;
+                Debug.Log("State Changed Worked!");
 
                 if (ingredientCorrect < amountOfIngredientsNeededToBeCorrect)
                 {
@@ -144,8 +146,6 @@ public class Player : MonoBehaviour
 
                 foodSelectMenu.addFoodToCookingClick();
                 foodSelectMenu.addToCookingStationSlotClick();
-                Debug.Log("State Changed Worked!");
-                pState = PlayerState.None;
             }
         }
     }
@@ -170,7 +170,11 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
 
+                FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+                
                 CheckIfIngredientsAreCorrect();
+                pState = PlayerState.None;
+                Debug.Log("State Changed Worked!");
 
                 if (ingredientCorrect < amountOfIngredientsNeededToBeCorrect)
                 {
@@ -185,9 +189,6 @@ public class Player : MonoBehaviour
                 ingredientCorrect = 0;
 
                 foodTakeoutWindow.giveCustomerSingleOrder();
-                FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
-                Debug.Log("State Changed Worked!");
-                pState = PlayerState.None;
             }
         }
     }

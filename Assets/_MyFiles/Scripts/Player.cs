@@ -163,6 +163,8 @@ public class Player : MonoBehaviour
     public void CheckIfIngredientsAreCorrect()
     {
 
+
+
         ClearIngredientArrays();
 
     }

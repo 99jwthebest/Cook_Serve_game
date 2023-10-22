@@ -291,6 +291,7 @@ public class FoodSelectMenu : MonoBehaviour
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomFirstIngredient].foodIngredientIcon;
 
+                    Player.instance.amountOfIngredientsNeededToBeCorrect++;
                     Debug.Log("Food has MORE than one first Ingredient");
                 }
                 else
@@ -318,6 +319,7 @@ public class FoodSelectMenu : MonoBehaviour
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[0].foodIngredientIcon;
 
+                    Player.instance.amountOfIngredientsNeededToBeCorrect++;
                     Debug.Log("Food Has ONE First Ingredient");
                 }
                 else
@@ -369,6 +371,7 @@ public class FoodSelectMenu : MonoBehaviour
                         foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;
 
                         currentTransform++;
+                        Player.instance.amountOfIngredientsNeededToBeCorrect++;
                         //ingredIndex++;
                     }
                     else
@@ -403,14 +406,21 @@ public class FoodSelectMenu : MonoBehaviour
     public void prepButtonFunctionality()
     {
 
+        //if(Player.instance.GetCurrentStepInOrder() == 0)
         Player.instance.incrementCurrentStepInOrder();
+
+        //if(Player.instance.GetCurrentStepInOrder() == 1)
+        //{
+        //    foodItem.randomAmountOfIngredientNeededPerTab
+        //}
+
 
         Player.instance.foodIngredientsA[Player.instance.foodIngredIndex] = foodIngredients;
         Player.instance.foodIngredIndex++;
 
         fadePrepButtonImage.gameObject.SetActive(true);
 
-        if (Player.instance.GetCurrentStepInOrder() > 0 && Player.instance.GetCurrentStepInOrder() < 2)
+        if (Player.instance.GetCurrentStepInOrder() == 1)
         {
             for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
             {
@@ -449,7 +459,9 @@ public class FoodSelectMenu : MonoBehaviour
                 }
             }
         }
-        else if (Player.instance.GetCurrentStepInOrder() >= foodItem.GetPrepStepCount())
+        else if (Player.instance.GetCurrentStepInOrder() >= foodItem.GetPrepStepCount() && 
+                foodItem.GetPrepStepCount() <= 2 &&
+                foodItem.randomAmountOfIngredientNeededPerTab <= 1)
         {
             for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
             {

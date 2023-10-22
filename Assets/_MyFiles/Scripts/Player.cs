@@ -8,6 +8,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player instance;
+    public int amountOfIngredientsNeededToBeCorrect;
+    public int ingredientCorrect;
     public int foodIngredIndex = 0;
     [SerializeField]
     int stepInCurrentOrder;
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
             {
                 ClearIngredientArrays();
                 foodIngredIndex = 0;
+                amountOfIngredientsNeededToBeCorrect = 0;
 
                 //foodIngredients.Clear();
                 //foodIngredientsToCheck.Clear();
@@ -110,12 +113,10 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+
                 foodIngredIndex = 0;
-                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
-                foodSelectMenu.addFoodToCookingClick();
-                foodSelectMenu.addToCookingStationSlotClick();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
                 ChangeIngredientTabs.instance.SelectImageTab();
@@ -126,6 +127,23 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
 
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+                
+                CheckIfIngredientsAreCorrect();
+
+                if (ingredientCorrect < amountOfIngredientsNeededToBeCorrect)
+                {
+                    ClearIngredientArrays();
+                    amountOfIngredientsNeededToBeCorrect = 0;
+                    ingredientCorrect = 0;
+                    Debug.Log("Need to make order again.");
+                    return;
+
+                }
+
+                ingredientCorrect = 0;
+
+                foodSelectMenu.addFoodToCookingClick();
+                foodSelectMenu.addToCookingStationSlotClick();
                 Debug.Log("State Changed Worked!");
                 pState = PlayerState.None;
             }
@@ -138,12 +156,11 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
+
                 foodIngredIndex = 0;
 
-                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
-                foodTakeoutWindow.giveCustomerSingleOrder();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
                 ChangeIngredientTabs.instance.SelectImageTab();
@@ -153,6 +170,21 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
                 FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
 
+                CheckIfIngredientsAreCorrect();
+
+                if (ingredientCorrect < amountOfIngredientsNeededToBeCorrect)
+                {
+                    ClearIngredientArrays();
+                    amountOfIngredientsNeededToBeCorrect = 0;
+                    ingredientCorrect = 0;
+                    Debug.Log("Need to make order again.");
+                    return;
+
+                }
+
+                ingredientCorrect = 0;
+
+                foodTakeoutWindow.giveCustomerSingleOrder();
                 FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
                 Debug.Log("State Changed Worked!");
                 pState = PlayerState.None;
@@ -162,11 +194,28 @@ public class Player : MonoBehaviour
 
     public void CheckIfIngredientsAreCorrect()
     {
+        //if()
 
-
-
-        ClearIngredientArrays();
-
+        for(int checkIndex = 0; checkIndex < amountOfIngredientsNeededToBeCorrect; checkIndex++)
+        {
+            for (int i = 0; i < amountOfIngredientsNeededToBeCorrect; i++)
+            {
+                if (foodIngredientsToCheckA[checkIndex] == foodIngredientsA[i])
+                {
+                    ingredientCorrect++;
+                    if(ingredientCorrect == amountOfIngredientsNeededToBeCorrect)
+                    {
+                        ClearIngredientArrays();
+                        amountOfIngredientsNeededToBeCorrect = 0;
+                        break;
+                    }
+                }
+                else
+                {
+                    Debug.Log("Ingredient Wrong!!!!!");
+                }
+            }
+        }
     }
 
     public void ClearIngredientArrays()

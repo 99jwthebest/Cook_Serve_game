@@ -54,7 +54,7 @@ public class ResultsScreen : MonoBehaviour
 
         customersServed = FoodMenuInventoryManager.Instance.totalAmountOfCustomersPerRound - FoodMenuInventoryManager.Instance.amountOfStrikes;
         customersServedText.text = customersServed.ToString();
-        perfectOrdersText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
+        perfectOrdersText.text = FoodMenuInventoryManager.Instance.highestFoodOrderCombo.ToString();
         totalStrikesText.text = FoodMenuInventoryManager.Instance.amountOfStrikes.ToString();
 
         if(customersServed >= FoodMenuInventoryManager.Instance.totalAmountOfCustomersPerRound)

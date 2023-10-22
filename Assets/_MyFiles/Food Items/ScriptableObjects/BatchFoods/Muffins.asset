@@ -17,3 +17,14 @@ MonoBehaviour:
   foodToBeMade: 6
   foodIcon: {fileID: 21300000, guid: e90dba4344a89934e987aab2fc0b39ae, type: 3}
   foodItemType: 0
+  prepStepCount: 2
+  randomAmountOfIngredientNeededPerTab: 1
+  firstIngredientCount: 1
+  steps:
+  - ingredients:
+    - {fileID: 11400000, guid: c379df887db16c843a32335e3c813501, type: 2}
+    - {fileID: 11400000, guid: 2e500bfda756b204eb1ec21153230412, type: 2}
+    - {fileID: 11400000, guid: 1f5e61610331d0a44a8dd15003038858, type: 2}
+    - {fileID: 11400000, guid: e520994eee3e8544aa9d4a86cdab73ab, type: 2}
+    - {fileID: 11400000, guid: 7929f866c90cd434c9af10a1fb9d0fb5, type: 2}
+    - {fileID: 11400000, guid: 5888806024564dc409c610cd51507d1c, type: 2}

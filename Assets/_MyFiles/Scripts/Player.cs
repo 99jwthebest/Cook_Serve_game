@@ -181,6 +181,15 @@ public class Player : MonoBehaviour
                     ClearIngredientArrays();
                     amountOfIngredientsNeededToBeCorrect = 0;
                     ingredientCorrect = 0;
+
+                    if (FoodMenuInventoryManager.Instance.perfectFoodOrderCombo > FoodMenuInventoryManager.Instance.highestFoodOrderCombo)
+                    {
+                        FoodMenuInventoryManager.Instance.highestFoodOrderCombo = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo;
+                    }
+
+                    FoodMenuInventoryManager.Instance.perfectFoodOrderCombo = 0;
+                    FoodMenuInventoryManager.Instance.perfectFoodOrderComboText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
+
                     Debug.Log("Need to make order again.");
                     return;
 

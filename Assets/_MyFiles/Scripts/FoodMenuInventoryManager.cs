@@ -68,6 +68,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public TextMeshProUGUI amountOfStrikesText;
     public int perfectFoodOrderCombo;
     public TextMeshProUGUI perfectFoodOrderComboText;
+    public int highestFoodOrderCombo;
+    public TextMeshProUGUI highestFoodOrderComboText;
 
     public Transform changingTabsIngredients;
     public Transform changingImageForTabIngredients;

@@ -286,7 +286,6 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
-                    Player.instance.AddIngredientToListCheck(ingredients[randomFirstIngredient]);
                     Player.instance.foodIngredientsToCheckA[0] = ingredients[randomFirstIngredient];
                     foodOrderDetailsSlot.foodIngredientID = ingredients[randomFirstIngredient].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
@@ -314,7 +313,6 @@ public class FoodSelectMenu : MonoBehaviour
                 if (foodSteps != null && foodSteps.Length > 0)
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
-                    Player.instance.AddIngredientToListCheck(ingredients[0]);
                     Player.instance.foodIngredientsToCheckA[0] = ingredients[0];
                     foodOrderDetailsSlot.foodIngredientID = ingredients[0].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
@@ -364,7 +362,6 @@ public class FoodSelectMenu : MonoBehaviour
                     if (foodSteps != null && foodSteps.Length > 0)
                     {
                         FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
-                        Player.instance.AddIngredientToListCheck(ingredients[randomIngredientNum]);
                         Player.instance.foodIngredientsToCheckA[currentTransform] = ingredients[randomIngredientNum];
 
                         foodOrderDetailsSlot.foodIngredientID = ingredients[randomIngredientNum].ingredientID;
@@ -408,7 +405,8 @@ public class FoodSelectMenu : MonoBehaviour
 
         Player.instance.incrementCurrentStepInOrder();
 
-        Player.instance.AddIngredientToList(foodIngredients);
+        Player.instance.foodIngredientsA[Player.instance.foodIngredIndex] = foodIngredients;
+        Player.instance.foodIngredIndex++;
 
         fadePrepButtonImage.gameObject.SetActive(true);
 

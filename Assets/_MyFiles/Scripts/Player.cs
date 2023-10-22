@@ -8,6 +8,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public static Player instance;
+    public int foodIngredIndex = 0;
     [SerializeField]
     int stepInCurrentOrder;
     [SerializeField]
@@ -18,9 +19,9 @@ public class Player : MonoBehaviour
     FoodItemTakeoutWindow foodTakeoutWindow;
     [SerializeField]
     FoodOrderDetailsSlot foodOrderDetailsSlot;
-    public List<FoodIngredients> foodIngredients = new List<FoodIngredients>();
-    public List<FoodIngredients> foodIngredientsToCheck = new List<FoodIngredients>();
+    public FoodIngredients[] foodIngredientsA;
     public FoodIngredients[] foodIngredientsToCheckA;
+
 
 
     public enum PlayerState
@@ -51,11 +52,6 @@ public class Player : MonoBehaviour
                 FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(false);
             }
         }
-
-        if(pState == PlayerState.None)
-        {
-
-        }
     }
 
 
@@ -65,11 +61,9 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
-                foodIngredientsToCheckA[0] = null;
-                foodIngredientsToCheckA[1] = null;
-                foodIngredientsToCheckA[2] = null;
+                ClearIngredientArrays();
+                foodIngredIndex = 0;
 
-                foodIngredientsToCheckA[3] = null;
                 //foodIngredients.Clear();
                 //foodIngredientsToCheck.Clear();
                 CloseAndEmptyFoodOrderDetails();
@@ -116,7 +110,8 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
-                //CheckIfIngredientsAreCorrect();
+                foodIngredIndex = 0;
+                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodSelectMenu.addFoodToCookingClick();
@@ -143,7 +138,9 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingSingleOrder && stepInCurrentOrder >= foodItemPrepping.GetPrepStepCount())
             {
-                //CheckIfIngredientsAreCorrect();
+                foodIngredIndex = 0;
+
+                CheckIfIngredientsAreCorrect();
                 CloseAndEmptyFoodOrderDetails();
 
                 foodTakeoutWindow.giveCustomerSingleOrder();
@@ -166,10 +163,27 @@ public class Player : MonoBehaviour
     public void CheckIfIngredientsAreCorrect()
     {
 
-        foodIngredients.RemoveAll(x => x != null);
-        foodIngredients.Clear();
-        foodIngredientsToCheck.Clear();
+        ClearIngredientArrays();
 
+    }
+
+    public void ClearIngredientArrays()
+    {
+        foodIngredientsA[0] = null;
+        foodIngredientsA[1] = null;
+        foodIngredientsA[2] = null;
+        foodIngredientsA[3] = null;
+        foodIngredientsA[4] = null;
+        foodIngredientsA[5] = null;
+
+
+
+        foodIngredientsToCheckA[0] = null;
+        foodIngredientsToCheckA[1] = null;
+        foodIngredientsToCheckA[2] = null;
+        foodIngredientsToCheckA[3] = null;
+        foodIngredientsToCheckA[4] = null;
+        foodIngredientsToCheckA[5] = null;
     }
 
     public void CloseAndEmptyFoodOrderDetails()
@@ -186,21 +200,6 @@ public class Player : MonoBehaviour
         }
 
         FoodMenuInventoryManager.Instance.foodOrderDetailsT.gameObject.SetActive(false);
-    }
-
-    public void AddIngredientToList(FoodIngredients foodIngredient)
-    {
-        foodIngredients.Add(foodIngredient);
-    }
-
-    public void Remove(FoodIngredients foodIngredient)
-    {
-        foodIngredients.Remove(foodIngredient);
-    }
-
-    public void AddIngredientToListCheck(FoodIngredients foodIngredient)
-    {
-        foodIngredientsToCheck.Add(foodIngredient);
     }
 
 

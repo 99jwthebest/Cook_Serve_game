@@ -287,6 +287,7 @@ public class FoodSelectMenu : MonoBehaviour
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
                     Player.instance.AddIngredientToListCheck(ingredients[randomFirstIngredient]);
+                    Player.instance.foodIngredientsToCheckA[0] = ingredients[randomFirstIngredient];
                     foodOrderDetailsSlot.foodIngredientID = ingredients[randomFirstIngredient].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomFirstIngredient].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomFirstIngredient].foodIngredientIcon;
@@ -314,6 +315,7 @@ public class FoodSelectMenu : MonoBehaviour
                 {
                     FoodIngredients[] ingredients = foodSteps[0].Ingredients;
                     Player.instance.AddIngredientToListCheck(ingredients[0]);
+                    Player.instance.foodIngredientsToCheckA[0] = ingredients[0];
                     foodOrderDetailsSlot.foodIngredientID = ingredients[0].ingredientID;
                     foodOrderDetailsSlot.foodIngredientName.text = ingredients[0].ingredientName;
                     foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[0].foodIngredientIcon;
@@ -353,7 +355,6 @@ public class FoodSelectMenu : MonoBehaviour
 
                 //int ingredIndex = 0;
 
-                currentTransform++;
 
                 if(foodOrderDetailsSlot.foodItem == null)
                 {
@@ -364,10 +365,13 @@ public class FoodSelectMenu : MonoBehaviour
                     {
                         FoodIngredients[] ingredients = foodSteps[stepIndex].Ingredients;
                         Player.instance.AddIngredientToListCheck(ingredients[randomIngredientNum]);
+                        Player.instance.foodIngredientsToCheckA[currentTransform] = ingredients[randomIngredientNum];
+
                         foodOrderDetailsSlot.foodIngredientID = ingredients[randomIngredientNum].ingredientID;
                         foodOrderDetailsSlot.foodIngredientName.text = ingredients[randomIngredientNum].ingredientName;
                         foodOrderDetailsSlot.foodImageIngredientColor.sprite = ingredients[randomIngredientNum].foodIngredientIcon;
 
+                        currentTransform++;
                         //ingredIndex++;
                     }
                     else

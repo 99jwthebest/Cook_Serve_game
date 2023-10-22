@@ -18525,6 +18525,23 @@ MonoBehaviour:
   foodOrderDetailsSlot: {fileID: 0}
   foodIngredients: []
   foodIngredientsToCheck: []
+  foodIngredientsToCheckA:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   pState: 0
 --- !u!1 &490037523
 GameObject:

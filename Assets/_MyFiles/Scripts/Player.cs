@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     FoodOrderDetailsSlot foodOrderDetailsSlot;
     public List<FoodIngredients> foodIngredients = new List<FoodIngredients>();
     public List<FoodIngredients> foodIngredientsToCheck = new List<FoodIngredients>();
-
+    public FoodIngredients[] foodIngredientsToCheckA;
 
 
     public enum PlayerState
@@ -53,9 +54,7 @@ public class Player : MonoBehaviour
 
         if(pState == PlayerState.None)
         {
-        foodIngredients.RemoveAll(x => x != null);
 
-//            foodIngredientsToCheck.Clear();
         }
     }
 
@@ -66,6 +65,11 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
+                foodIngredientsToCheckA[0] = null;
+                foodIngredientsToCheckA[1] = null;
+                foodIngredientsToCheckA[2] = null;
+
+                foodIngredientsToCheckA[3] = null;
                 //foodIngredients.Clear();
                 //foodIngredientsToCheck.Clear();
                 CloseAndEmptyFoodOrderDetails();

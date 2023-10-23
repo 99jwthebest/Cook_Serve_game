@@ -210,6 +210,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
             if (foodSelectMenu.foodNeedToCookAmount > 0 && foodSelectMenu.currentSpawnedFoodAmount < foodSelectMenu.foodNeedToCookAmount)
             {
                 SetTakeOutWindow();
+
+                SoundEffects.instance.PlayCustomerHereSound();
                 foodItemTakeoutWindow.foodItem = foodSelectMenu.foodItem;
                 foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenu.foodItem.foodItemName;
                 foodItemTakeoutWindow.foodItemIconTW.sprite = foodSelectMenu.foodItem.foodIcon;
@@ -231,6 +233,8 @@ public class FoodMenuInventoryManager : MonoBehaviour
                     if (foodSelectMenuFL.foodNeedToCookAmount > 0 && foodSelectMenuFL.currentSpawnedFoodAmount < foodSelectMenuFL.foodNeedToCookAmount)
                     {
                         SetTakeOutWindow();
+                        
+                        SoundEffects.instance.PlayCustomerHereSound();
                         foodItemTakeoutWindow.foodItem = foodSelectMenuFL.foodItem;
                         foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenuFL.foodItem.foodItemName;
                         foodItemTakeoutWindow.foodItemIconTW.sprite = foodSelectMenuFL.foodItem.foodIcon;
@@ -257,6 +261,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
                     {
                         SetTakeOutWindow();
 
+                        SoundEffects.instance.PlayCustomerHereSound();
                         foodItemTakeoutWindow.foodItem = foodSelectMenu.foodItem;
                         foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenu.foodItem.foodItemName;
                         foodItemTakeoutWindow.foodItemIconTW.sprite = foodSelectMenu.foodItem.foodIcon;
@@ -274,6 +279,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
                 case FoodItem.FoodItemType.Single:
                     SetTakeOutWindow();
 
+                    SoundEffects.instance.PlayCustomerHereSound();
                     foodItemTakeoutWindow.foodItem = foodSelectMenu.foodItem;
                     foodItemTakeoutWindow.foodItemNameTW.text = foodSelectMenu.foodItem.foodItemName;
                     foodItemTakeoutWindow.foodItemIconTW.sprite = foodSelectMenu.foodItem.foodIcon;

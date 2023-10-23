@@ -84,7 +84,7 @@ public class InventoryItemController : MonoBehaviour, IPointerEnterHandler, IPoi
             Debug.Log("Is it going into unequipped??!?!");
 
         }
-        else if (foodItem != null)  // this is why it's not working, something with the stupid toggles, damn it!!!!!
+        else if (foodItem != null)  
         {
             InventoryManager.Instance.RemoveFoodItemSlot();
 
@@ -130,6 +130,7 @@ public class InventoryItemController : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         Debug.Log("It enter the area, Boy!!!!");
 
+        SoundEffects.instance.PlayHoverOverButtonSound();
 
         if (foodItemButtonID >= 0 && foodItemButtonID < InventoryManager.Instance.foodButtonsBatchCount)
         {
@@ -161,6 +162,15 @@ public class InventoryItemController : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         Debug.Log("You clicked mothafucka!!!!");
         foodToggleIsOn = true;
+
+        if(foodItem != null)
+        {
+            SoundEffects.instance.PlayClickButtonSound3();
+        }
+        else
+        {
+            SoundEffects.instance.PlayClickButtonSound();
+        }
 
         if (InventoryManager.Instance.autoSelect)
         {

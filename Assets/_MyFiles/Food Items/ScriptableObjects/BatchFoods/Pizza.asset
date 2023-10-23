@@ -21,4 +21,31 @@ MonoBehaviour:
   randomAmountOfIngredientNeededPerTab: 3
   firstIngredientCount: 3
   notRandomIngredients: 0
-  steps: []
+  steps:
+  - ingredients:
+    - {fileID: 11400000, guid: 895be01409a3725498cdeaf4af0a49cf, type: 2}
+    - {fileID: 11400000, guid: 646767f8c57ea6a45ab40c8254126e25, type: 2}
+    - {fileID: 11400000, guid: 03f2eaaf4c76e864aaa33ebb211f8170, type: 2}
+    - {fileID: 11400000, guid: 3332c3ff281e1b242a9049ee8dddde9a, type: 2}
+    - {fileID: 11400000, guid: 8bcd1a685e5d6c4499ba5fb807ec0e9d, type: 2}
+    - {fileID: 11400000, guid: d9d16cb788efa2944aa08b3cafcaae12, type: 2}
+    - {fileID: 11400000, guid: 609de687cd074e6419c98e4eb18117bb, type: 2}
+    - {fileID: 11400000, guid: 7d027cc50f51fa444aa2dd1a541b933a, type: 2}
+  - ingredients:
+    - {fileID: 11400000, guid: d4603db1babe448489acc130b9e101ef, type: 2}
+    - {fileID: 11400000, guid: 34e46c07b98c58a42a3b4bdf57c75648, type: 2}
+    - {fileID: 11400000, guid: d1a57d0d0fd693346a586abfad9ab0e2, type: 2}
+    - {fileID: 11400000, guid: 5e98c07aceebed442af7818b553a5de9, type: 2}
+    - {fileID: 11400000, guid: 7beb8fed3f61d8f4284f303f6654e0e7, type: 2}
+    - {fileID: 11400000, guid: 4f063f50e8112be4f8bc582d97d9193a, type: 2}
+    - {fileID: 11400000, guid: 8fe06b8007c166042abd785397ddd36f, type: 2}
+    - {fileID: 11400000, guid: fef57eb3b75b5c746887be85645bfefa, type: 2}
+  - ingredients:
+    - {fileID: 11400000, guid: 1dfd17ce9bae5ef46ac3c83544f25d42, type: 2}
+    - {fileID: 11400000, guid: 3515546f721f3be4482a6a45ffd55569, type: 2}
+    - {fileID: 11400000, guid: c6eee8537b9d4c045b9b3cdacceb022c, type: 2}
+    - {fileID: 11400000, guid: 2343175d5870cdb4eb84060c240c5a83, type: 2}
+    - {fileID: 11400000, guid: 79ba045eba356e640bc55204e210d3b3, type: 2}
+    - {fileID: 11400000, guid: e35736241cb3d4842b21353ebc16da9b, type: 2}
+    - {fileID: 11400000, guid: c51fad77726c43d4eaf965adb1cd2814, type: 2}
+    - {fileID: 11400000, guid: be0aefb3f78ba1b42b83e41bf93f7d3d, type: 2}

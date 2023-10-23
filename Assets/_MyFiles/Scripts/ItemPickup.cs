@@ -32,6 +32,7 @@ public class ItemPickup : MonoBehaviour
 
     public void ClickButton()
     {
+        SoundEffects.instance.PlayClickButtonSound2();
         Pickup();
     }
 }

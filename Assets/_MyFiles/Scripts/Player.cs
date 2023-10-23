@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -38,6 +33,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
         pState = PlayerState.None;
+        SoundEffects.instance.PlayAmbientClip();
     }
 
     private void Update()
@@ -62,6 +58,7 @@ public class Player : MonoBehaviour
         {
             if (pState == PlayerState.MakingBatchOrder && stepInCurrentOrder < foodItemPrepping.GetPrepStepCount())
             {
+                SoundEffects.instance.PlayOrderMessedUpSound();
                 ClearIngredientArrays();
                 foodIngredIndex = 0;
                 amountOfIngredientsNeededToBeCorrect = 0;
@@ -138,6 +135,8 @@ public class Player : MonoBehaviour
                     ClearIngredientArrays();
                     amountOfIngredientsNeededToBeCorrect = 0;
                     ingredientCorrect = 0;
+                    SoundEffects.instance.PlayOrderMessedUpSound();
+
                     Debug.Log("Need to make order again.");
                     return;
 
@@ -191,6 +190,7 @@ public class Player : MonoBehaviour
 
                     FoodMenuInventoryManager.Instance.perfectFoodOrderCombo = 0;
                     FoodMenuInventoryManager.Instance.perfectFoodOrderComboText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
+                    SoundEffects.instance.PlayOrderMessedUpSound();
 
                     Debug.Log("Need to make order again.");
                     return;
@@ -199,6 +199,7 @@ public class Player : MonoBehaviour
 
                 ingredientCorrect = 0;
 
+                SoundEffects.instance.PlayGaveCustomerFoodSound();
                 foodTakeoutWindow.giveCustomerSingleOrder();
             }
         }
@@ -206,6 +207,7 @@ public class Player : MonoBehaviour
 
     public void FailedMakingSingleOrderFood()
     {
+        SoundEffects.instance.PlayOrderMessedUpSound();
 
         foodIngredIndex = 0;
 
@@ -246,7 +248,6 @@ public class Player : MonoBehaviour
 
     public void CheckIfIngredientsAreCorrect()
     {
-        //if()
 
         for(int checkIndex = 0; checkIndex < amountOfIngredientsNeededToBeCorrect; checkIndex++)
         {

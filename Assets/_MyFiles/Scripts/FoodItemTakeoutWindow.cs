@@ -148,6 +148,7 @@ public class FoodItemTakeoutWindow : MonoBehaviour
 
                         foodWaitingTime = foodStartWaitingTime;
                         current = start;
+                        SoundEffects.instance.PlayGaveCustomerFoodSound();
 
                         gameObject.SetActive(false);
                         Debug.Log("we succedded on giving food to CUSTOMER!!!");

@@ -212,9 +212,6 @@ public class InventoryManager : MonoBehaviour
     {
 
         foodButtonIdPrevious = foodButtonIdReceive;
-        //foodItemButton = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponentInChildren<Toggle>();
-        ////foodItemButton = inventoryItemController.GetFoodSlotToggle();
-        //inventoryItemController = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponentInChildren<InventoryItemController>();
 
         foreach (Transform foodItemSlot in foodLoadoutContent)
         {
@@ -236,10 +233,6 @@ public class InventoryManager : MonoBehaviour
 
     public void turnOffAllToggles()
     {
-        //foodItemButton = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponentInChildren<Toggle>();
-        ////foodItemButton = inventoryItemController.GetFoodSlotToggle();
-        //inventoryItemController = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponentInChildren<InventoryItemController>();
-
         foreach (Transform foodItemSlot in foodLoadoutContent)
         {
             inventoryItemController = foodItemSlot.gameObject.GetComponentInChildren<InventoryItemController>();

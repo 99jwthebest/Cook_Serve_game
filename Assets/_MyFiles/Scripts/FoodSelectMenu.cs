@@ -174,6 +174,8 @@ public class FoodSelectMenu : MonoBehaviour
 
     public void addFoodInfoToPrepButtons()
     {
+        SoundEffects.instance.PlayCookingStationClickSound();
+
 
         for (int stepIndex = 0; stepIndex < foodItem.GetAmountOfFoodSteps(); stepIndex++)
         {
@@ -501,6 +503,7 @@ public class FoodSelectMenu : MonoBehaviour
 
     public void prepButtonFunctionality()
     {
+        SoundEffects.instance.PlayCookingStationClickSound();
 
         //if(Player.instance.GetCurrentStepInOrder() == 0)
         Player.instance.incrementCurrentStepInOrder();

@@ -145,6 +145,7 @@ public class CookingStationSlot : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         
         transform.parent.GetComponent<Image>().enabled = true;
+        SoundEffects.instance.PlayHoverOverButtonSound();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -158,12 +159,8 @@ public class CookingStationSlot : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("You clicked mothafucka!!!!");
-        //if (FoodMenuInventoryManager.Instance.autoSelect)
-        //{
-        //    FoodMenuInventoryManager.Instance.inventoryItemController.transform.parent.GetComponent<Image>().enabled = false;
-        //    Debug.Log("You stupid fucker!!!!");
-        //    FoodMenuInventoryManager.Instance.autoSelect = false;
-        //}
+
+        SoundEffects.instance.PlayCookingStationClickSound();
 
         if (foodItem == null)
         {
@@ -209,7 +206,7 @@ public class CookingStationSlot : MonoBehaviour, IPointerEnterHandler, IPointerE
     public IEnumerator addToCookingStationSlotI(int amountOfFood, CookingStationSlot cookingStationSlotI, FoodSelectMenu foodSelectMenu)
     {
         changePlayerStateToNone();
-
+        SoundEffects.instance.PlayFoodCookingSound();
         cookingStationSlotI.foodItemImage.sprite = foodSelectMenu.foodItem.foodIcon;
         cookingStationSlotI.foodItemNameText.text = foodSelectMenu.foodItem.foodItemName.ToString();
 

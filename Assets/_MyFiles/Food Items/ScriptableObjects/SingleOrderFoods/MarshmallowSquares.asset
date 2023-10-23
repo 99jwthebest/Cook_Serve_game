@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   foodItemName: Marshmallow Squares
   foodToBeMade: 1
-  foodIcon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
+  foodIcon: {fileID: 21300000, guid: 70a77abda853dd941a0c8debf1de9b04, type: 3}
   foodItemType: 1
   prepStepCount: 2
   randomAmountOfIngredientNeededPerTab: 2
@@ -23,6 +23,6 @@ MonoBehaviour:
   notRandomIngredients: 1
   steps:
   - ingredients:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 8662b4c08efdf6d43a059abda2c4fc9d, type: 2}
+    - {fileID: 11400000, guid: 776fb213b3d10764387cab7edc635e1e, type: 2}
+    - {fileID: 11400000, guid: 518983ab9c03bac4ca0f05ab852d5e6e, type: 2}

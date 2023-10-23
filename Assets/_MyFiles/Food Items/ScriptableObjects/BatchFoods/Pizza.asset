@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 422a4d4439d266349bbc73ecf1d49c54, type: 3}
-  m_Name: Pretzel
+  m_Name: Pizza
   m_EditorClassIdentifier: 
-  id: 9
-  foodItemName: Pretzel
-  foodToBeMade: 4
-  foodIcon: {fileID: 21300000, guid: 8e651ba1d3a6cea45b728b5dd6e18f40, type: 3}
+  id: 7
+  foodItemName: Pizza
+  foodToBeMade: 8
+  foodIcon: {fileID: 21300000, guid: 262cec09c82ec3445a8b979b33c06979, type: 3}
   foodItemType: 0
-  prepStepCount: 2
-  randomAmountOfIngredientNeededPerTab: 1
-  firstIngredientCount: 1
+  prepStepCount: 4
+  randomAmountOfIngredientNeededPerTab: 3
+  firstIngredientCount: 3
   notRandomIngredients: 0
   steps: []

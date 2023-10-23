@@ -15,5 +15,14 @@ MonoBehaviour:
   id: 0
   foodItemName: Grilled Cheese Sandwich
   foodToBeMade: 1
-  foodIcon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
+  foodIcon: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
   foodItemType: 1
+  prepStepCount: 2
+  randomAmountOfIngredientNeededPerTab: 2
+  firstIngredientCount: 1
+  notRandomIngredients: 1
+  steps:
+  - ingredients:
+    - {fileID: 11400000, guid: fd114101a7606a24a934de2103c7cdd3, type: 2}
+    - {fileID: 11400000, guid: 565839bfa4b15f94fb7b986618eb41a1, type: 2}
+    - {fileID: 11400000, guid: 4631e86cc8b52a94d8b51bdbd4d37054, type: 2}

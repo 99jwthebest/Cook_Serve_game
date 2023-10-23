@@ -69,6 +69,7 @@ public class Player : MonoBehaviour
                 //foodIngredients.Clear();
                 //foodIngredientsToCheck.Clear();
                 CloseAndEmptyFoodOrderDetails();
+                EmptyAndTurnOffExtraButtonsOnIngredientTabs();
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
                 ChangeIngredientTabs.instance.SelectImageTab();
@@ -115,6 +116,7 @@ public class Player : MonoBehaviour
 
                 foodIngredIndex = 0;
                 CloseAndEmptyFoodOrderDetails();
+                EmptyAndTurnOffExtraButtonsOnIngredientTabs();
 
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -159,6 +161,7 @@ public class Player : MonoBehaviour
                 foodIngredIndex = 0;
 
                 CloseAndEmptyFoodOrderDetails();
+                EmptyAndTurnOffExtraButtonsOnIngredientTabs();
 
 
                 ChangeIngredientTabs.instance.selectedTab = 0;
@@ -207,7 +210,7 @@ public class Player : MonoBehaviour
         foodIngredIndex = 0;
 
         CloseAndEmptyFoodOrderDetails();
-
+        EmptyAndTurnOffExtraButtonsOnIngredientTabs();
 
         ChangeIngredientTabs.instance.selectedTab = 0;
         ChangeIngredientTabs.instance.SelectImageTab();
@@ -219,7 +222,6 @@ public class Player : MonoBehaviour
 
         FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
 
-        CheckIfIngredientsAreCorrect();
         pState = PlayerState.None;
         Debug.Log("State Changed Worked!");
 
@@ -301,6 +303,43 @@ public class Player : MonoBehaviour
         }
 
         FoodMenuInventoryManager.Instance.foodOrderDetailsT.gameObject.SetActive(false);
+    }
+
+    public void EmptyAndTurnOffExtraButtonsOnIngredientTabs()
+    {
+        for (int stepIndex = 0; stepIndex < 3; stepIndex++)
+        {
+            Transform foodPrepMenuContent = null;
+
+            if (stepIndex == 0)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent;
+            }
+            else if (stepIndex == 1)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent1;
+            }
+            else if (stepIndex == 2)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent2;
+            }
+
+            if (foodPrepMenuContent == null)
+            {
+                Debug.Log("foodPrepMenuContent for step " + stepIndex + " is not available.");
+                return;
+            }
+
+            foreach (Transform child in foodPrepMenuContent)
+            {
+                FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+
+                child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                foodSelectMenu.foodItem = null;
+                foodSelectMenu.foodIngredients = null;
+                child.transform.gameObject.SetActive(false);
+            }
+        }
     }
 
 

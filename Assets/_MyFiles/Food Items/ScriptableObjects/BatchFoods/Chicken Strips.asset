@@ -20,4 +20,8 @@ MonoBehaviour:
   prepStepCount: 2
   randomAmountOfIngredientNeededPerTab: 1
   firstIngredientCount: 1
-  steps: []
+  notRandomIngredients: 1
+  steps:
+  - ingredients:
+    - {fileID: 11400000, guid: a1e7c4f4a1bfd7a439429d1de8a96d4a, type: 2}
+    - {fileID: 11400000, guid: 73d09bd006fc3d44e89cac3676b54d0a, type: 2}

@@ -253,10 +253,12 @@ public class FoodItemTakeoutWindow : MonoBehaviour
                     if (foodSelectMenu.foodItemButtonID == 0)
                     {
                         child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                        child.transform.gameObject.SetActive(true);
                     }
                     else
                     {
                         child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                        child.transform.gameObject.SetActive(true);
                     }
 
                     ingredIndex++;
@@ -264,6 +266,41 @@ public class FoodItemTakeoutWindow : MonoBehaviour
                 else
                 {
                     Debug.Log("Foodsteps is null or foodSteps do not have a length.");
+                }
+            }
+        }
+
+        for (int stepIndex = 0; stepIndex < 3; stepIndex++)
+        {
+            Transform foodPrepMenuContent = null;
+
+            if (stepIndex == 0)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent;
+            }
+            else if (stepIndex == 1)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent1;
+            }
+            else if (stepIndex == 2)
+            {
+                foodPrepMenuContent = FoodMenuInventoryManager.Instance.foodPrepMenuContent2;
+            }
+
+            if (foodPrepMenuContent == null)
+            {
+                Debug.Log("foodPrepMenuContent for step " + stepIndex + " is not available.");
+                return;
+            }
+
+            foreach (Transform child in foodPrepMenuContent)
+            {
+                FoodSelectMenu foodSelectMenu = child.GetComponentInChildren<FoodSelectMenu>();
+                if (foodSelectMenu.foodIngredients == null)
+                {
+                    child.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+                    foodSelectMenu.foodItem = null;
+                    child.transform.gameObject.SetActive(false);
                 }
             }
         }

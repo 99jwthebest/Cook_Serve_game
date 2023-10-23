@@ -101,6 +101,14 @@ public class FoodMenuInventoryManager : MonoBehaviour
         foodBatchCount = InventoryManager.Instance.foodButtonsBatchCount;
     }
 
+    private void Update()
+    {
+        if(perfectFoodOrderCombo > highestFoodOrderCombo)
+        {
+            highestFoodOrderCombo = perfectFoodOrderCombo;
+        }
+    }
+
     public void populateTakeoutWindowsLoop()
     {
         int takeoutOrderWindowCount = takeoutOrderWindowContent.childCount;

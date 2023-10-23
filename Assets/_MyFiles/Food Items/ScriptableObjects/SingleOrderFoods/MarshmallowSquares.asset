@@ -17,3 +17,12 @@ MonoBehaviour:
   foodToBeMade: 1
   foodIcon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   foodItemType: 1
+  prepStepCount: 2
+  randomAmountOfIngredientNeededPerTab: 2
+  firstIngredientCount: 1
+  notRandomIngredients: 1
+  steps:
+  - ingredients:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}

@@ -13,14 +13,24 @@ public class FoodItemTakeoutWindow : MonoBehaviour
     public Image foodItemIconTW;
     public TextMeshProUGUI foodItemTypeText;
     public bool foodWaiting;
-    public float foodWaitingTime = 7f;
+    public float foodWaitingTime = 15f;
+    float foodStartWaitingTime;
     public int takeOutWindowID;
+
+    [Header("Progress Bar Properties")]
+    public float maximum;
+    public float current;
+    public float start;
+    public Image mask;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        foodStartWaitingTime = foodWaitingTime;
+        maximum = foodWaitingTime * 10;
+        start = maximum;
+        current = start;
     }
 
     // Update is called once per frame
@@ -28,28 +38,39 @@ public class FoodItemTakeoutWindow : MonoBehaviour
     {
         if (foodItem != null)
         {
+            current -= 10 * Time.deltaTime;
             foodWaitingTime -= 1 * Time.deltaTime;
             Debug.Log("Customer is WAITING!!!");
+
         }
         else
         {
-            foodWaitingTime = 7f;
+            foodWaitingTime = foodStartWaitingTime;
+            current = start;
         }
 
         if (foodWaitingTime <= 0)
         {
-            foodWaitingTime = 7f;
+            foodWaitingTime = foodStartWaitingTime;
+            current = start;
             customerLeaves();
         }
+
+        GetCurrentFill();
+
         //if(foodItem.foodItemType == FoodItem.FoodItemType.Single)
         //{
 
         //}   
     }
+    public void GetCurrentFill()
+    {
+        float fillAmount = current / maximum;
+        mask.fillAmount = fillAmount;
+    }
 
     public void customerLeaves()
     {
-
         foodItem = null;
         foodItemNameTW.text = null;
         foodItemIconTW.sprite = null;
@@ -58,6 +79,16 @@ public class FoodItemTakeoutWindow : MonoBehaviour
         FoodMenuInventoryManager.Instance.totalAmountOfCustomersPerRoundRemaining--;
         FoodMenuInventoryManager.Instance.totalAmountOfCustomersText.text = FoodMenuInventoryManager.Instance.totalAmountOfCustomersPerRoundRemaining.ToString();
         FoodMenuInventoryManager.Instance.takeoutWindowsFilled--;
+
+
+        if (Player.instance.foodTakeoutWindow != null && 
+            Player.instance.pState == Player.PlayerState.MakingSingleOrder && 
+            Player.instance.GetFoodItemTakeoutWindow().foodItem == null)
+        {
+            Player.instance.FailedMakingSingleOrderFood();
+
+            Debug.Log("CALLING FROM BEYOND FMOTEHR TRUCKER!!!!");
+        }
 
 
         gameObject.SetActive(false);
@@ -114,7 +145,9 @@ public class FoodItemTakeoutWindow : MonoBehaviour
 
                         FoodMenuInventoryManager.Instance.perfectFoodOrderCombo++;
                         FoodMenuInventoryManager.Instance.perfectFoodOrderComboText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
-                        foodWaitingTime = 7f;
+
+                        foodWaitingTime = foodStartWaitingTime;
+                        current = start;
 
                         gameObject.SetActive(false);
                         Debug.Log("we succedded on giving food to CUSTOMER!!!");
@@ -154,6 +187,8 @@ public class FoodItemTakeoutWindow : MonoBehaviour
     public void turnOnFoodPrepButtons()
     {
         foodWaitingTime = 30f;
+        current = foodWaitingTime * 10f;
+
         FoodMenuInventoryManager.Instance.takeOutWindowIDReceive = takeOutWindowID;
         FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(true);
         FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(false);
@@ -458,7 +493,8 @@ public class FoodItemTakeoutWindow : MonoBehaviour
 
         FoodMenuInventoryManager.Instance.perfectFoodOrderCombo++;
         FoodMenuInventoryManager.Instance.perfectFoodOrderComboText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
-        foodItemTakeoutWindow.foodWaitingTime = 7f;
+        foodItemTakeoutWindow.foodWaitingTime = foodStartWaitingTime;
+        foodItemTakeoutWindow.current = start;
         changePlayerStateToNone();
         foodItemTakeoutWindow.gameObject.SetActive(false);
         Debug.Log("We Gave out a SINGLE ORDER to CUSTOMER!!!");

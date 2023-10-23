@@ -17,8 +17,7 @@ public class Player : MonoBehaviour
     FoodItem foodItemPrepping;
     [SerializeField]
     FoodSelectMenu foodSelectMenu;
-    [SerializeField]
-    FoodItemTakeoutWindow foodTakeoutWindow;
+    public FoodItemTakeoutWindow foodTakeoutWindow;
     [SerializeField]
     FoodOrderDetailsSlot foodOrderDetailsSlot;
     public FoodIngredients[] foodIngredientsA;
@@ -202,6 +201,47 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void FailedMakingSingleOrderFood()
+    {
+
+        foodIngredIndex = 0;
+
+        CloseAndEmptyFoodOrderDetails();
+
+
+        ChangeIngredientTabs.instance.selectedTab = 0;
+        ChangeIngredientTabs.instance.SelectImageTab();
+        stepInCurrentOrder = 0;
+        ResetFoodImagesAndFoodPrepButtons();
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent.gameObject.SetActive(false);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent1.gameObject.SetActive(false);
+        FoodMenuInventoryManager.Instance.foodPrepMenuContent2.gameObject.SetActive(false);
+
+        FoodMenuInventoryManager.Instance.foodSelectMenuContent.gameObject.SetActive(true);
+
+        CheckIfIngredientsAreCorrect();
+        pState = PlayerState.None;
+        Debug.Log("State Changed Worked!");
+
+        ClearIngredientArrays();
+        amountOfIngredientsNeededToBeCorrect = 0;
+        ingredientCorrect = 0;
+
+        if (FoodMenuInventoryManager.Instance.perfectFoodOrderCombo > FoodMenuInventoryManager.Instance.highestFoodOrderCombo)
+        {
+            FoodMenuInventoryManager.Instance.highestFoodOrderCombo = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo;
+        }
+
+        FoodMenuInventoryManager.Instance.perfectFoodOrderCombo = 0;
+        FoodMenuInventoryManager.Instance.perfectFoodOrderComboText.text = FoodMenuInventoryManager.Instance.perfectFoodOrderCombo.ToString();
+        FoodMenuInventoryManager.Instance.foodSelectMenu.gameObject.SetActive(false);
+
+        foodTakeoutWindow = null;
+
+        Debug.Log("Customer left while you were making making a single Order, BITCH!!!");
+
+    }
+
     public void CheckIfIngredientsAreCorrect()
     {
         //if()
@@ -292,6 +332,10 @@ public class Player : MonoBehaviour
     public void SetFoodItemTakeoutWindow(FoodItemTakeoutWindow foodItemTakeoutWindowF)
     {
         foodTakeoutWindow = foodItemTakeoutWindowF;
+    }
+    public FoodItemTakeoutWindow GetFoodItemTakeoutWindow()
+    {
+        return foodTakeoutWindow;
     }
 
     public void SetFoodOrderDetailsSlot(FoodOrderDetailsSlot foodOrderDetailsSlotF)

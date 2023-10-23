@@ -15,5 +15,9 @@ MonoBehaviour:
   id: 8
   foodItemName: Spaghetti
   foodToBeMade: 6
-  foodIcon: {fileID: 21300000, guid: 3676a0b185daeb54fb257f700ba7ead4, type: 3}
+  foodIcon: {fileID: 21300000, guid: 67991df549ed1f2478dba50029d887b7, type: 3}
   foodItemType: 0
+  prepStepCount: 2
+  randomAmountOfIngredientNeededPerTab: 1
+  firstIngredientCount: 1
+  steps: []

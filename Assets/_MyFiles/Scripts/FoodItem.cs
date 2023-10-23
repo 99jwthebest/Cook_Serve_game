@@ -27,6 +27,7 @@ public class FoodItem : ScriptableObject
     int prepStepCount;
     public int randomAmountOfIngredientNeededPerTab;
     public int firstIngredientCount;
+    public bool notRandomIngredients;
 
     [SerializeField]
     FoodStep[] steps;

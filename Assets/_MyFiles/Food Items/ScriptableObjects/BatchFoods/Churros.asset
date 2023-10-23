@@ -15,4 +15,9 @@ MonoBehaviour:
   id: 3
   foodItemName: Churros
   foodToBeMade: 8
-  foodIcon: {fileID: 21300000, guid: 5d9ba4e7d0964044ea54abe409d81dfd, type: 3}
+  foodIcon: {fileID: 21300000, guid: cfbabf09f3ecfa146be81c5ab04af745, type: 3}
+  foodItemType: 0
+  prepStepCount: 2
+  randomAmountOfIngredientNeededPerTab: 1
+  firstIngredientCount: 1
+  steps: []

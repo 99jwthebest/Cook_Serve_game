@@ -279,6 +279,15 @@ public class Player : MonoBehaviour
         foodIngredientsA[3] = null;
         foodIngredientsA[4] = null;
         foodIngredientsA[5] = null;
+        foodIngredientsA[6] = null;
+        foodIngredientsA[7] = null;
+        foodIngredientsA[8] = null;
+        foodIngredientsA[9] = null;
+        foodIngredientsA[10] = null;
+        foodIngredientsA[11] = null;
+        foodIngredientsA[12] = null;
+        foodIngredientsA[13] = null;
+
 
 
 
@@ -288,6 +297,15 @@ public class Player : MonoBehaviour
         foodIngredientsToCheckA[3] = null;
         foodIngredientsToCheckA[4] = null;
         foodIngredientsToCheckA[5] = null;
+        foodIngredientsToCheckA[6] = null;
+        foodIngredientsToCheckA[7] = null;
+        foodIngredientsToCheckA[8] = null;
+        foodIngredientsToCheckA[9] = null;
+        foodIngredientsToCheckA[10] = null;
+        foodIngredientsToCheckA[11] = null;
+        foodIngredientsToCheckA[12] = null;
+        foodIngredientsToCheckA[13] = null;
+
     }
 
     public void CloseAndEmptyFoodOrderDetails()

@@ -1,7 +1,7 @@
 
 # 🎮  2D UI Cooking Game (Cook Serve Inspired)
 
-*Save Titan is a first-person shooter that combines fast-paced combat with parkour-inspired movement. Players can wall-run, slide, mantle, and shoot mid-air, creating fluid, high-mobility gameplay reminiscent of Titanfall. Designed for speed and momentum, every encounter is a test of agility, aim, and split-second decision-making.*
+*A fast-paced 2D cooking simulator where players manage incoming orders, cook times, and ingredient combinations through a responsive UI. Inspired by Cook, Serve, Delicious!, the game challenges players to quickly prepare dishes under pressure, using recipe knowledge, time management, and fast decision-making to satisfy hungry customers.*
 
 ---
 
@@ -21,13 +21,13 @@
 
 ## 📌 Project Description
 
-**Save Titan** is a solo-developed first-person shooter created as a class project using **Unreal Engine 5 with C++ and Blueprints**. Inspired by the parkour system of *Titanfall*, the game emphasizes fluid movement and fast-paced action in a time trial format. Players must run, wall-run, slide, and mantle their way through a combat course—defeating enemies and racing against the clock to reach the finish line.
+**2D UI Cooking Game (Cook Serve Inspired)** is a solo-developed class project built in **Unity using C#**, later refined as a portfolio piece. Inspired by *Cook, Serve, Delicious*, the game focuses on quick decision-making, time management, and ingredient memorization in a fast-paced restaurant environment.
 
-The game features **double jumping**, **wall running**, **sliding**, **mantling**, and **hit-scan-based shooting**, allowing players to chain parkour and gunplay seamlessly. While enemies remain stationary to keep the focus on movement mastery and precision, they do shoot back—adding a layer of pressure and timing to the trial.
+Players receive customer orders, prepare ingredients through a custom UI, and cook them either in **batch mode** or **single-order mode** depending on the complexity. Success depends on managing time efficiently, remembering recipes, and navigating the UI quickly to fulfill as many orders as possible under pressure.
 
-All programming, UI, and design were done independently. Basic sound effects were implemented using Unreal’s built-in audio system, and **GitHub** was used for personal version control.
+A major technical highlight of the game is the **inventory and recipe management system**, implemented using **lists** and **ScriptableObjects** to represent food items and their ingredients. This approach allowed for modular, data-driven design of recipes, which made UI population, cooking logic, and inventory tracking highly scalable. Players can stock ingredients, monitor usage in real time, and interact with a dynamic UI that reflects cooking progress, available inventory, and timers.
 
-The technical highlight of the project lies in the character controller—built from scratch to replicate Titanfall-style parkour using **3D math**, **physics calculations**, and **custom movement logic**.
+All gameplay systems, UI layout, logic, and data structures were built independently, with special focus on replicating the feel and structure of *Cook, Serve, Delicious* through a clean and responsive interface.
 
 
 

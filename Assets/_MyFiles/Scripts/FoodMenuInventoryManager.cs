@@ -7,33 +7,54 @@ using Unity.VisualScripting;
 
 public class FoodMenuInventoryManager : MonoBehaviour
 {
+
     public static FoodMenuInventoryManager Instance;
-    public List<FoodItem> FoodItems = new List<FoodItem>();
 
+    // ==================================================
+    // FOOD INVENTORY
+    // ==================================================
+
+    [Header("Food Inventory")]
+    [SerializeField] private List<FoodItem> FoodItems = new List<FoodItem>();
     public Transform FoodInventoryContent;
+    private int foodInventoryCount;
+
+    // ==================================================
+    // FOOD LOADOUT
+    // ==================================================
+
+    [Header("Food Loadout")]
     public Transform foodLoadoutContent;
-    public int foodInventoryCount;
-    public GameObject InventoryFoodItem;
+    private InventoryItemController inventoryItemController;
+    private FoodItem foodItemIM;
 
-    public Toggle EnableRemove;
+    private int foodButtonIdReceive;
+    private int foodButtonIdPrevious;
+    private int foodSlotsFilled;
+    private bool autoSelect;
 
-    //public InventoryItemController[] InventoryFoodItems;
-    public InventoryItemController inventoryItemController;
-    public int foodButtonIdReceive;
-    public int foodButtonIdPrevious;
-    public FoodItem foodItemIM;
+    // ==================================================
+    // INVENTORY UI
+    // ==================================================
 
-    public TextMeshProUGUI foodItemName;
-    public Image foodItemIcon;
-    public int foodNumIdIM;
-    public Toggle foodItemButton;
-    public bool autoSelect;
-    public int foodSlotsFilled;
-    public int amountOfFoodNeedToCook;
-    public TextMeshProUGUI foodNeededToCookText;
+    [Header("Inventory UI")]
+    [SerializeField] private Toggle EnableRemove;
+    [SerializeField] private Toggle foodItemButton;
+    [SerializeField] private TextMeshProUGUI foodItemName;
+    [SerializeField] private Image foodItemIcon;
+
+    // ==================================================
+    // COOKING STATIONS
+    // ==================================================
+
+    [Header("Cooking Stations")]
     public int foodButtonIDCSReceive;
 
-    public Transform cookingStationSlots;
+    // ==================================================
+    // FOOD SELECTION & PREPARATION UI
+    // ==================================================
+
+    [Header("Food Selection & Preparation")]
     public Transform menuFoodInventory;
     public Transform foodSelectMenu;
     public Transform foodSelectMenuContent;
@@ -42,39 +63,67 @@ public class FoodMenuInventoryManager : MonoBehaviour
     public Transform foodPrepMenuContent2;
     public Transform foodPrepImages;
 
-    public Transform takeoutOrderWindowContent;
-    public Transform foodOrderWindows;
-    public int takeOutWindowIDReceive;
+    // ==================================================
+    // INGREDIENTS & FOOD DETAILS UI
+    // ==================================================
 
-    public int totalAmountOfCustomers;
-    public int totalAmountOfCustomersPerRound;
-    public TextMeshProUGUI totalAmountOfCustomersText;
-    public int totalAmountOfCustomersPerRoundRemaining;
-
-    public int foodBatchCount;
-    public int foodSingleCount;
-    public int totalAmountOfBatchOrders;
-    public int totalAmountOfSingleOrders;
-    public int amountOfSingleOrdersSpawned;
-    public int totalAmountOfRandomOrders;
-    public int takeoutOrderWindowCount;
-    public int takeoutWindowsFilled;
-    public int totalAmountOfOrdersSpawned;
-
-    public int windowTakeoutOrderNum;
-    Transform takeoutOrderWindowSlot;
-    FoodItemTakeoutWindow foodItemTakeoutWindow;
-    public int amountOfStrikes;
-    public TextMeshProUGUI amountOfStrikesText;
-    public int perfectFoodOrderCombo;
-    public TextMeshProUGUI perfectFoodOrderComboText;
-    public int highestFoodOrderCombo;
-    public TextMeshProUGUI highestFoodOrderComboText;
-
+    [Header("Ingredients & Food Details")]
     public Transform changingTabsIngredients;
     public Transform changingImageForTabIngredients;
     public Transform foodOrderDetailsT;
     public Transform foodOrderDetailsSlotTrans;
+
+    // ==================================================
+    // CUSTOMER MANAGEMENT
+    // ==================================================
+
+    [Header("Customer Management")]
+    public int totalAmountOfCustomersPerRound;
+    public int totalAmountOfCustomersPerRoundRemaining;
+    public TextMeshProUGUI totalAmountOfCustomersText;
+
+    // ==================================================
+    // ORDER GENERATION
+    // ==================================================
+
+    [Header("Order Generation")]
+    public int foodBatchCount;
+    public int foodSingleCount;
+    [SerializeField] private int totalAmountOfBatchOrders;
+    [SerializeField] private int totalAmountOfSingleOrders;
+    [SerializeField] private int amountOfSingleOrdersSpawned;
+    [SerializeField] private int totalAmountOfRandomOrders;
+    [SerializeField] private int totalAmountOfOrdersSpawned;
+
+    // ==================================================
+    // TAKEOUT ORDER WINDOWS
+    // ==================================================
+
+    [Header("Takeout Order Windows")]
+    public Transform takeoutOrderWindowContent;
+    [SerializeField] private Transform foodOrderWindows;
+
+    public int takeOutWindowIDReceive;
+    [SerializeField] private int takeoutOrderWindowCount;
+    public int takeoutWindowsFilled;
+    [SerializeField] private int windowTakeoutOrderNum;
+
+    private Transform takeoutOrderWindowSlot;
+    private FoodItemTakeoutWindow foodItemTakeoutWindow;
+
+    // ==================================================
+    // SCORING & PERFORMANCE
+    // ==================================================
+
+    [Header("Scoring & Performance")]
+    public int amountOfStrikes;
+    public TextMeshProUGUI amountOfStrikesText;
+
+    public int perfectFoodOrderCombo;
+    public TextMeshProUGUI perfectFoodOrderComboText;
+
+    public int highestFoodOrderCombo;
+
 
 
     private void Awake()

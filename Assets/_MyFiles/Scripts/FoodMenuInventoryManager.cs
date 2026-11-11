@@ -368,17 +368,17 @@ public class FoodMenuInventoryManager : MonoBehaviour
     }
 
 
-    public void Add(FoodItem foodItem)
+    public void Add(FoodItem foodItem)// looks similar ***
     {
         FoodItems.Add(foodItem);
     }
 
-    public void Remove(FoodItem foodItem)
+    public void Remove(FoodItem foodItem) // looks similar ***
     {
         FoodItems.Remove(foodItem);
     }
 
-    public void ListFoodItems()
+    public void ListFoodItems() // looks similar ***
     {
         /* // Clean Content before opening Inventory
         foreach(Transform foodItem in FoodItemContent)
@@ -420,7 +420,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
         //SetInventoryItems();
     }
 
-    public void AutoSelectNextItemSlot()
+    public void AutoSelectNextItemSlot() // looks similar ***
     {
         inventoryItemController.transform.parent.GetComponent<Image>().enabled = false;
 
@@ -465,7 +465,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
         }
     }
 
-    public void turnOffOtherToggles()
+    public void turnOffOtherToggles() // looks similar ***
     {
 
         foodButtonIdPrevious = foodButtonIdReceive;
@@ -492,7 +492,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
 
     }
 
-    public void turnOffAllToggles()
+    public void turnOffAllToggles() // looks similar ***
     {
         //foodItemButton = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponentInChildren<Toggle>();
         ////foodItemButton = inventoryItemController.GetFoodSlotToggle();
@@ -509,7 +509,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
     }
 
 
-    public void RemoveFoodItemSlot()
+    public void RemoveFoodItemSlot() // looks similar ***
     {
 
         //inventoryItemController = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponent<InventoryItemController>();
@@ -524,7 +524,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
 
     }
 
-    public void AddFoodBackToInventory()
+    public void AddFoodBackToInventory() // looks similar ***
     {
         if (!FoodInventoryContent.GetChild(foodButtonIdPrevious).gameObject.activeInHierarchy)
         {
@@ -532,7 +532,7 @@ public class FoodMenuInventoryManager : MonoBehaviour
         }
     }
 
-    public void EnableFoodItemsRemove()
+    public void EnableFoodItemsRemove() // looks similar ***
     {
         if (EnableRemove.isOn)
         {

@@ -10,31 +10,27 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<FoodItem> FoodItems = new List<FoodItem>();
 
-    public Transform FoodInventoryContent;
-    public Transform foodLoadoutContent;
-    public int foodInventoryCount;
-    public GameObject InventoryFoodItem;
+    [SerializeField] private Transform FoodInventoryContent;
+    [SerializeField] private Transform foodLoadoutContent;
+    private int foodInventoryCount;
 
-    public Toggle EnableRemove;
+    [SerializeField] private Toggle EnableRemove;
 
-    //public InventoryItemController[] InventoryFoodItems;
     public InventoryItemController inventoryItemController;
     public int foodButtonIdReceive;
     public int foodButtonIdPrevious;
     public FoodItem foodItemIM;
 
-    public TextMeshProUGUI foodItemName;
-    public Image foodItemIcon;
-    public int foodNumIdIM;
-    public Toggle foodItemButton;
+    private TextMeshProUGUI foodItemName;
+    private Image foodItemIcon;
     public bool autoSelect;
     public int foodSlotsFilled;
-    public GameObject fadeBeginDayButtonImage;
-    public int foodLoadoutSlotsBatchOrdersCount;
+    private GameObject fadeBeginDayButtonImage;
+    private int foodLoadoutSlotsBatchOrdersCount;
 
-    public GameObject[] foodButtonsBatchOrders;
+    private GameObject[] foodButtonsBatchOrders;
     public int foodButtonsBatchCount;
-    public GameObject[] foodButtonsSingleOrders;
+    private GameObject[] foodButtonsSingleOrders;
     public int foodButtonsSingleCount;
     public GameObject foodBatchInventory;
     public GameObject foodSingleInventory;
@@ -61,14 +57,6 @@ public class InventoryManager : MonoBehaviour
         fadeLoadoutImage = GameObject.FindGameObjectWithTag("FadeLoadoutImage");
         fadeLoadoutImage.SetActive(false);
 
-        //if(foodButtonIdPrevious >= 0 && foodButtonIdPrevious < foodButtonsBatchCount)
-        //{
-
-        //}
-        //if(foodButtonIdPrevious >= foodButtonsBatchCount && foodButtonIdPrevious < foodButtonsSingleCount + foodButtonsBatchCount)
-        //{
-
-        //}
     }
 
     private void Update()
@@ -110,17 +98,17 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public void Add(FoodItem foodItem)
+    public void Add(FoodItem foodItem)  // looks similar ***
     {
         FoodItems.Add(foodItem);
     }
 
-    public void Remove(FoodItem foodItem)
+    public void Remove(FoodItem foodItem) // looks similar ***
     {
         FoodItems.Remove(foodItem);
     }
 
-    public void ListFoodItems()
+    public void ListFoodItems() // looks similar ***
     {
         /* // Clean Content before opening Inventory
         foreach(Transform foodItem in FoodItemContent)
@@ -162,7 +150,7 @@ public class InventoryManager : MonoBehaviour
         //SetInventoryItems();
     }
 
-    public void AutoSelectNextItemSlot()
+    public void AutoSelectNextItemSlot() // looks similar ***
     {
         inventoryItemController.transform.parent.GetComponent<Image>().enabled = false;
 
@@ -208,7 +196,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void turnOffOtherToggles()
+    public void turnOffOtherToggles() // looks similar ***
     {
 
         foodButtonIdPrevious = foodButtonIdReceive;
@@ -231,7 +219,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void turnOffAllToggles()
+    public void turnOffAllToggles() // looks similar ***
     {
         foreach (Transform foodItemSlot in foodLoadoutContent)
         {
@@ -243,7 +231,7 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public void RemoveFoodItemSlot()
+    public void RemoveFoodItemSlot() // looks similar ***
     {
 
         //inventoryItemController = foodLoadoutContent.GetChild(foodButtonIdReceive).GetComponent<InventoryItemController>();
@@ -258,7 +246,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void AddFoodBackToInventory()
+    public void AddFoodBackToInventory() // looks similar ***
     {
 
         if (foodButtonIdReceive >= 0 && foodButtonIdReceive < foodButtonsBatchCount)
@@ -298,7 +286,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
    
-    public void EnableFoodItemsRemove()
+    public void EnableFoodItemsRemove() // looks similar ***
     {
         if (EnableRemove.isOn)
         {
